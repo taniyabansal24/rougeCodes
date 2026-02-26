@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background: var(--surface);
+    overflow-x: hidden;
+  }
+}
+
+:root {
+  --bg: #F9F9F9;
+  --surface: #FFFFFF;
+  --accent: #8BA888;
+  --text-high: #1A1A1A;
+  --text-mid: #666666;
+  --text-low: #C0C0C0;
+  --border: rgba(0, 0, 0, 0.08);
+  --ease: cubic-bezier(0.7, 0, 0.3, 1);
+}
