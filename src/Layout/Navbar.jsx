@@ -64,7 +64,7 @@ const Navbar = () => {
     >
       {/* Background blur layer for when scrolled */}
       {scrolled && (
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-white/5 via-transparent to-white/5" />
+        <div className="absolute inset-0 -z-10 bg-linear-to-r from-white/5 via-transparent to-white/5" />
       )}
       
       <Container className="mx-auto flex justify-between items-center relative">
@@ -132,7 +132,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`fixed inset-0 bg-gradient-to-b from-black/90 to-black/95 backdrop-blur-2xl transition-all duration-500 flex items-center justify-center ${
+          className={`fixed inset-0 bg-linear-to-b from-black/90 to-black/95 backdrop-blur-2xl transition-all duration-500 flex items-center justify-center ${
             isMenuOpen
               ? "opacity-100 visible"
               : "opacity-0 invisible pointer-events-none"

@@ -278,7 +278,7 @@ const Project = () => {
                     {/* Title and Category Section */}
                     <div className="flex-1">
                       <div className="flex flex-wrap items-center gap-3">
-                        <div className="relative w-6 h-6 flex-shrink-0">
+                        <div className="relative w-6 h-6 shrink-0">
                           {renderIcon(project.icon, isActive)}
                         </div>
                         <h3 className="text-base md:text-lg lg:text-xl font-bold">
@@ -306,7 +306,7 @@ const Project = () => {
                     </div>
 
                     {/* Contact Button */}
-                    <div className="flex-shrink-0 ml-6">
+                    <div className="shrink-0 ml-6">
                       <a
                         href={`mailto:matthisgarnier.contact@gmail.com?subject=I%20loved%20${encodeURIComponent(project.title)}%20project%2C%20Matthis%20!`}
                         className={`inline-flex items-center gap-2 px-4 py-2 text-sm border rounded-full transition-all duration-500 hover:scale-105 ${
@@ -326,7 +326,7 @@ const Project = () => {
 
                 {/* Floating Image */}
                 <div
-                  className={`absolute right-[12%] md:right-[18%] lg:right-[22%] top-1/2 -translate-y-1/2 w-[200px] md:w-[250px] lg:w-[300px] z-20 pointer-events-none transition-all duration-700 ease-out will-change-transform ${
+                  className={`absolute right-[12%] md:right-[18%] lg:right-[22%] top-1/2 -translate-y-1/2 w-50 md:w-62.5 lg:w-75 z-20 pointer-events-none transition-all duration-700 ease-out will-change-transform ${
                     isActive
                       ? "opacity-100 scale-100 translate-x-0"
                       : "opacity-0 scale-90 translate-x-12"
