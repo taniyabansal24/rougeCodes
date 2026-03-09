@@ -7,7 +7,7 @@
   }
 
   body {
-    background: var(--surface);
+    background: var(--bg);
     overflow-x: hidden;
   }
 }
@@ -21,48 +21,6 @@
   --text-low: #c0c0c0;
   --border: rgba(0, 0, 0, 0.08);
   --ease: cubic-bezier(0.7, 0, 0.3, 1);
-}
-
-@layer components {
-  /* HERO DISPLAY */
-  .hero-heading {
-    @apply text-[14vw] font-medium leading-[0.9] tracking-tight;
-  }
-
-  .hero-heading-overlay {
-    @apply text-[14vw] font-medium leading-[0.9] tracking-tight;
-  }
-
-
-  /* SECTION HEADINGS */
-  .section-heading {
-    @apply text-5xl lg:text-7xl font-medium tracking-wide;
-  }
-
-
-  /* SUBTITLE */
-  .text-subtitle {
-    @apply text-sm font-medium ;
-  }
-
-  /* BODY TEXT */
-  .text-body {
-    @apply text-base font-normal leading-relaxed text-[var(--text-mid)];
-  }
-
-  /* NAVIGATION */
-  .nav-link {
-    @apply text-xs font-medium uppercase tracking-[0.2em] transition-all duration-300;
-  }
-  
-  /* MAIN SECTIONS Spacing */
-  .section {
-    @apply py-20 md:py-24;
-  }
-
-  .subsection {
-    @apply py-16 md:py-20;
-  }
 }
 
 /* Add to your global CSS file */
@@ -101,4 +59,157 @@
   .absolute img {
     width: 120px;
   }
+}
+
+
+
+
+@layer components {
+
+  /* =================================
+     HERO TYPOGRAPHY
+     Used in: Hero Section
+  ================================= */
+
+  .hero-heading,
+  .hero-heading-overlay {
+    @apply text-[14vw] font-medium leading-[0.9] tracking-tight;
+  }
+
+
+  /* =================================
+     MAIN HEADINGS
+     Used in: Services, Vision, Projects, CTA
+  ================================= */
+
+  .section-heading,
+  .section-heading-long,
+  .cta-heading {
+    @apply text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] tracking-tight;
+  }
+
+
+  /* =================================
+     SUB HEADINGS
+     Used in: Service titles, feature headings
+  ================================= */
+
+  .section-subheading,
+  .service-title {
+    @apply text-3xl md:text-4xl font-light leading-tight tracking-tight;
+  }
+
+
+  /* =================================
+     CARD / ITEM TITLES
+     Used in: Project titles, card titles
+  ================================= */
+
+  .card-title,
+  .project-title {
+    @apply text-xl md:text-2xl font-medium leading-snug;
+  }
+
+
+  /* =================================
+     BODY TEXT
+     Used in: descriptions, paragraphs
+  ================================= */
+
+  .text-body,
+  .cta-description,
+  .service-subtitle,
+  .text-body-lg {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+
+
+  /* =================================
+     SMALL TEXT
+     Used in: nav, footer, labels
+  ================================= */
+
+  .text-body-sm,
+  .text-subtitle,
+  .text-subtitle-accent,
+  .nav-link,
+  .btn-text,
+  .footer-heading,
+  .footer-link,
+  .footer-contact,
+  .footer-copyright,
+  .stat-label {
+    @apply text-base;
+  }
+
+
+  /* =================================
+     STATS NUMBERS
+     Used in: counters
+  ================================= */
+
+  .stat-number {
+    @apply text-3xl md:text-4xl lg:text-5xl font-light;
+  }
+
+
+  /* =================================
+     SPACING SYSTEM
+     Used in: sections globally
+  ================================= */
+
+  .section {
+    @apply py-20 md:py-24;
+  }
+
+  .section-sm {
+    @apply py-16 md:py-20;
+  }
+
+  .subsection {
+    @apply py-16 md:py-20;
+  }
+
+  .subsection-sm {
+    @apply py-12 md:py-16;
+  }
+
+  .container-padding {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+
+  /* =================================
+     HOVER EFFECTS
+  ================================= */
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-[0_0_30px_-5px_rgba(139,168,136,0.3)];
+  }
+
+
+  /* =================================
+     COLORS
+  ================================= */
+
+  .text-accent { color: #8ba888; }
+  .text-high { color: #1a1a1a; }
+  .text-mid { color: #666666; }
+  .text-low { color: #c0c0c0; }
+
+  .bg-accent { background-color: #8ba888; }
+  .bg-surface { background-color: #ffffff; }
+  .bg-page { background-color: #f9f9f9; }
+
+  .border-accent-light { border-color: rgba(139,168,136,0.2); }
+  .border-accent { border-color: #8ba888; }
+
 }

@@ -56,8 +56,8 @@ const CloseIcon = () => (
     <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z" />
   </svg>
 );
+
 const Project = () => {
-  const [isVisible, setIsVisible] = useState(true);
   const [activeProject, setActiveProject] = useState(0);
   const rowsRef = useRef([]);
 
@@ -192,8 +192,6 @@ const Project = () => {
     };
   }, []);
 
-  const titleLetters = ["⤵", "P", "r", "o", "j", "e", "c", "t", "s"];
-
   const renderIcon = (type, isActive) => {
     switch (type) {
       case "grid":
@@ -218,43 +216,21 @@ const Project = () => {
 
   return (
     <div className="w-full">
-      {/* Header Section */}
+      {/* Header Section - Following system pattern */}
       <div className="border-b border-gray-200">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex justify-between items-center">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold flex text-[#8ba888]">
-              {titleLetters.map((letter, index) => (
-                <span
-                  key={index}
-                  className={`inline-block transition-all duration-300 hover:-translate-y-1 ${
-                    index === 0 ? "mr-1" : ""
-                  }`}
-                  style={{
-                    transform: isVisible ? "translateY(0)" : "translateY(20px)",
-                    opacity: isVisible ? 1 : 0,
-                    transitionDelay: `${index * 50}ms`,
-                  }}
-                >
-                  {letter}
-                </span>
-              ))}
-            </h2>
-            <button
-              onClick={() => setIsVisible(!isVisible)}
-              className="w-6 h-6 hover:rotate-90 transition-transform duration-300"
-            >
-              <CloseIcon />
-            </button>
-          </div>
+        <div className="container mx-auto px-4 py-20 max-w-3xl text-center">
+          <span className="text-label text-accent mb-3 inline-block">
+            Our Work
+          </span>
+          <h2 className="section-heading text-high mb-6">Selected Projects</h2>
+          <p className="text-body">
+            Explore some of the products and brands we’ve helped build.
+          </p>
         </div>
       </div>
 
       {/* Projects List */}
-      <div
-        className={`w-full transition-all duration-500 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
-        }`}
-      >
+      <div className="w-full transition-all duration-500 opacity-100 translate-y-0">
         <div role="list" className="divide-y divide-gray-200">
           {projects.map((project, index) => {
             const isActive = activeProject === index;
@@ -272,8 +248,6 @@ const Project = () => {
                 }`}
               >
                 <div className="container mx-auto px-4 py-8 md:py-10">
-                  {" "}
-                  {/* Increased height for better scroll space */}
                   <div className="flex items-center justify-between">
                     {/* Title and Category Section */}
                     <div className="flex-1">
@@ -281,23 +255,21 @@ const Project = () => {
                         <div className="relative w-6 h-6 shrink-0">
                           {renderIcon(project.icon, isActive)}
                         </div>
-                        <h3 className="text-base md:text-lg lg:text-xl font-bold">
-                          {project.title}
-                        </h3>
-                        <span className="hidden md:inline text-base md:text-lg lg:text-xl font-bold">
+                        <h3 className="card-title">{project.title}</h3>
+                        <span className="hidden md:inline text-body text-low">
                           —
                         </span>
                         <span
-                          className={`hidden md:inline text-sm lg:text-base transition-colors duration-300 ${
-                            isActive ? "text-gray-300" : "text-gray-600"
+                          className={`hidden md:inline text-body transition-colors duration-300 ${
+                            isActive ? "text-low" : "text-mid"
                           }`}
                         >
                           {project.category}
                         </span>
                         {/* Mobile category */}
                         <span
-                          className={`md:hidden w-full text-sm transition-colors duration-300 ${
-                            isActive ? "text-gray-300" : "text-gray-600"
+                          className={`md:hidden w-full text-body transition-colors duration-300 ${
+                            isActive ? "text-low" : "text-mid"
                           } mt-1`}
                         >
                           {project.category}
@@ -309,7 +281,7 @@ const Project = () => {
                     <div className="shrink-0 ml-6">
                       <a
                         href={`mailto:matthisgarnier.contact@gmail.com?subject=I%20loved%20${encodeURIComponent(project.title)}%20project%2C%20Matthis%20!`}
-                        className={`inline-flex items-center gap-2 px-4 py-2 text-sm border rounded-full transition-all duration-500 hover:scale-105 ${
+                        className={`inline-flex items-center gap-2 px-4 py-2 btn-text border rounded-full transition-all duration-500 hover:scale-105 ${
                           isActive
                             ? "border-white text-white hover:bg-white hover:text-black"
                             : "border-current text-current hover:bg-gray-100"
@@ -326,19 +298,24 @@ const Project = () => {
 
                 {/* Floating Image */}
                 <div
-                  className={`absolute right-[12%] md:right-[18%] lg:right-[22%] top-1/2 -translate-y-1/2 w-50 md:w-62.5 lg:w-75 z-20 pointer-events-none transition-all duration-700 ease-out will-change-transform ${
-                    isActive
-                      ? "opacity-100 scale-100 translate-x-0"
-                      : "opacity-0 scale-90 translate-x-12"
-                  }`}
+                  className={`absolute right-[12%] md:right-[18%] lg:right-[22%] 
+  top-1/2 -translate-y-1/2 
+  w-50  h-68 
+  overflow-hidden z-20 pointer-events-none 
+  transition-all duration-700 ease-out will-change-transform 
+  ${
+    isActive
+      ? "opacity-100 scale-100 translate-x-0"
+      : "opacity-0 scale-90 translate-x-12"
+  }`}
                 >
-                  <div className="relative overflow-hidden rounded-xl shadow-2xl">
+                  <div className="relative w-full h-full overflow-hidden rounded-xl shadow-2xl">
                     <picture>
                       <source srcSet={project.imageSrcset} type="image/png" />
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                         loading="lazy"
                       />
                     </picture>

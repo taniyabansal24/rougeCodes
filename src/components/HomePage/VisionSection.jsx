@@ -108,7 +108,7 @@ const VisionSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen overflow-hidden bg-white"
+      className="relative h-screen overflow-hidden bg-surface"
     >
       <Container>
         <div
@@ -117,9 +117,9 @@ const VisionSection = () => {
         >
           {/* Content Block */}
           <div className="relative z-10 container mx-auto px-4 text-center">
-            {/* Subtitle */}
+            {/* Subtitle - Using consistent text-subtitle-accent class */}
             <div ref={subtitleRef} className="mb-8">
-              <div className="text-subtitle text-[#8BA888] border-2 py-1 px-4 w-fit mx-auto rounded-3xl">
+              <div className="text-subtitle-accent text-accent border-accent/20">
                 Let's Design Your Vision
               </div>
             </div>
@@ -137,10 +137,12 @@ const VisionSection = () => {
                   ref={(el) => (textLinesRef.current[index] = el)}
                   className="relative"
                 >
-                  <h2 className="section-heading text-black opacity-10 absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
+                  {/* Shadow text */}
+                  <h2 className=" cta-heading text-low opacity-30 absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
                     {text}
                   </h2>
-                  <h2 className="section-heading text-black relative left-1/2 -translate-x-1/2 whitespace-nowrap">
+                  {/* Main text */}
+                  <h2 className=" cta-heading text-high relative left-1/2 -translate-x-1/2 whitespace-nowrap">
                     {text}
                   </h2>
                 </div>
@@ -151,8 +153,8 @@ const VisionSection = () => {
 
             {/* Button */}
             <a ref={buttonRef} href="/contact" className="inline-block group">
-              <div className="flex items-center space-x-4 bg-[#8BA888] text-white px-8 py-4 rounded-full hover:bg-black transition-colors duration-300 shadow-xl">
-                <span className="relative overflow-hidden h-6">
+              <div className="flex items-center space-x-4 bg-accent text-white px-8 py-4 rounded-full hover:bg-black transition-colors duration-300 shadow-xl">
+                <span className="btn-text relative overflow-hidden h-6">
                   <span className="block transition-transform duration-300 group-hover:-translate-y-full">
                     Get in Touch
                   </span>
@@ -184,7 +186,7 @@ const VisionSection = () => {
             </a>
           </div>
 
-          {/* Images - Start centered, animate to far corners */}
+          {/* Images */}
           <div className="absolute inset-0 pointer-events-none">
             <img
               ref={image1Ref}

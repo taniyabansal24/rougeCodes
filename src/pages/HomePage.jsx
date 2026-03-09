@@ -2,6 +2,8 @@ import React from "react";
 import HeroSection from "../components/HomePage/HeroSection";
 import VisionSection from "../components/HomePage/VisionSection";
 import Project from "../components/HomePage/Project";
+import Services from "../components/HomePage/Services";
+import CallToAction from "../Layout/CallToAction";
 
 const HomePage = () => {
   return (
@@ -12,6 +14,12 @@ const HomePage = () => {
       </div>
       <div className="section">
         <Project />
+      </div>
+      <div className="section">
+        <Services/>
+      </div>
+      <div className="">
+        <CallToAction/>
       </div>
     </div>
   );

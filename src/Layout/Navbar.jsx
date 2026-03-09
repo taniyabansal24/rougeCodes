@@ -56,7 +56,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 px-6 md:px-12 py-4 transition-all duration-500 ${
+      className={`fixed top-0 w-full z-50 px-6 md:px-12 lg:px-20 py-4 transition-all duration-500 ${
         scrolled 
           ? "bg-white/10 backdrop-blur-xl shadow-2xl border-b border-white/20" 
           : "bg-transparent"
@@ -68,20 +68,20 @@ const Navbar = () => {
       )}
       
       <div className="container mx-auto flex justify-between items-center relative">
-        {/* Logo */}
+        {/* Logo - Updated with text-high color class */}
         <div
           className="text-2xl md:text-3xl font-medium tracking-tight cursor-pointer group"
           onClick={() => handleNavClick("/")}
         >
-          <span className="text-text-high group-hover:text-accent transition-colors duration-300">
+          <span className="text-high group-hover:text-accent transition-colors duration-300">
             ROUGE
           </span>
-          <span className="text-[#8BA888] group-hover:text-text-high transition-colors duration-300">
+          <span className="text-accent group-hover:text-high transition-colors duration-300">
             CODES
           </span>
         </div>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation - Already using nav-link class! Perfect */}
         <div className="hidden md:flex items-center gap-8 lg:gap-12">
           {navItems.slice(1).map((item) => (
             <button
@@ -89,8 +89,8 @@ const Navbar = () => {
               onClick={() => handleNavClick(item.path)}
               className={`relative px-2 py-1 nav-link group ${
                 isActive(item.path)
-                  ? "text-text-high"
-                  : "text-text-mid hover:text-text-high"
+                  ? "text-high"
+                  : "text-mid hover:text-high"
               }`}
             >
               {item.label}
@@ -117,16 +117,19 @@ const Navbar = () => {
             className={`w-6 h-0.5 bg-current transition-all duration-300 ${
               isMenuOpen ? "rotate-45 translate-y-2.5" : ""
             }`}
+            style={{ color: isMenuOpen ? '#8ba888' : 'currentColor' }}
           />
           <span
             className={`w-6 h-0.5 bg-current transition-all duration-300 ${
               isMenuOpen ? "opacity-0 scale-0" : ""
             }`}
+            style={{ color: isMenuOpen ? '#8ba888' : 'currentColor' }}
           />
           <span
             className={`w-6 h-0.5 bg-current transition-all duration-300 ${
               isMenuOpen ? "-rotate-45 -translate-y-2.5" : ""
             }`}
+            style={{ color: isMenuOpen ? '#8ba888' : 'currentColor' }}
           />
         </button>
 
@@ -144,7 +147,8 @@ const Navbar = () => {
               <button
                 key={item.path}
                 onClick={() => handleNavClick(item.path)}
-                className={`text-4xl md:text-5xl font-bold transition-all duration-300 hover:scale-110 relative group ${
+                // Updated to use consistent font weights
+                className={`text-3xl md:text-4xl font-light transition-all duration-300 hover:scale-110 relative group ${
                   isActive(item.path) ? "text-accent" : "text-white"
                 }`}
                 style={{
@@ -156,7 +160,7 @@ const Navbar = () => {
                 }}
               >
                 {item.label}
-                <span className="absolute -bottom-2 left-1/2 w-0 h-1 bg-accent transform -translate-x-1/2 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-accent transform -translate-x-1/2 transition-all duration-300 group-hover:w-full" />
               </button>
             ))}
           </div>
