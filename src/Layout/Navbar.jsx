@@ -56,12 +56,21 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 px-6 md:px-12 py-4 transition-all duration-300 `}
+      className={`fixed top-0 w-full z-50 px-6 md:px-12 py-4 transition-all duration-500 ${
+        scrolled 
+          ? "bg-white/10 backdrop-blur-xl shadow-2xl border-b border-white/20" 
+          : "bg-transparent"
+      }`}
     >
-      <Container className="mx-auto flex justify-between items-center">
+      {/* Background blur layer for when scrolled */}
+      {scrolled && (
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-white/5 via-transparent to-white/5" />
+      )}
+      
+      <Container className="mx-auto flex justify-between items-center relative">
         {/* Logo */}
         <div
-          className="font-syne text-2xl md:text-3xl font-black tracking-tighter cursor-pointer group"
+          className="text-2xl md:text-3xl font-medium tracking-tight cursor-pointer group"
           onClick={() => handleNavClick("/")}
         >
           <span className="text-text-high group-hover:text-accent transition-colors duration-300">
@@ -78,7 +87,7 @@ const Navbar = () => {
             <button
               key={item.path}
               onClick={() => handleNavClick(item.path)}
-              className={`relative px-2 py-1 uppercase text-xs font-bold tracking-[0.2em] transition-all duration-300 group ${
+              className={`relative px-2 py-1 nav-link group ${
                 isActive(item.path)
                   ? "text-text-high"
                   : "text-text-mid hover:text-text-high"
@@ -87,7 +96,7 @@ const Navbar = () => {
               {item.label}
               <span
                 className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
-                  isActive(item.path) || scrolled
+                  isActive(item.path)
                     ? "w-full bg-accent"
                     : "w-0 bg-accent group-hover:w-full"
                 }`}
@@ -99,23 +108,23 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           className={`md:hidden w-12 h-12 flex flex-col justify-center items-center gap-1.5 z-50 rounded-full transition-all duration-300 ${
-            isMenuOpen ? "bg-accent/20" : ""
+            isMenuOpen ? "bg-white/20 backdrop-blur-sm" : ""
           }`}
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
           <span
-            className={`w-6 h-0.5 bg-black transition-all duration-300 ${
+            className={`w-6 h-0.5 bg-current transition-all duration-300 ${
               isMenuOpen ? "rotate-45 translate-y-2.5" : ""
             }`}
           />
           <span
-            className={`w-6 h-0.5 bg-black transition-all duration-300 ${
+            className={`w-6 h-0.5 bg-current transition-all duration-300 ${
               isMenuOpen ? "opacity-0 scale-0" : ""
             }`}
           />
           <span
-            className={`w-6 h-0.5 bg-black transition-all duration-300 ${
+            className={`w-6 h-0.5 bg-current transition-all duration-300 ${
               isMenuOpen ? "-rotate-45 -translate-y-2.5" : ""
             }`}
           />
@@ -123,7 +132,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`fixed inset-0 bg-gradient-to-b from-bg/95 to-bg/98 backdrop-blur-xl transition-all duration-500 flex items-center justify-center ${
+          className={`fixed inset-0 bg-gradient-to-b from-black/90 to-black/95 backdrop-blur-2xl transition-all duration-500 flex items-center justify-center ${
             isMenuOpen
               ? "opacity-100 visible"
               : "opacity-0 invisible pointer-events-none"
@@ -136,7 +145,7 @@ const Navbar = () => {
                 key={item.path}
                 onClick={() => handleNavClick(item.path)}
                 className={`text-4xl md:text-5xl font-bold transition-all duration-300 hover:scale-110 relative group ${
-                  isActive(item.path) ? "text-accent" : "text-text-high"
+                  isActive(item.path) ? "text-accent" : "text-white"
                 }`}
                 style={{
                   animation: isMenuOpen
@@ -160,6 +169,22 @@ const Navbar = () => {
             opacity: 1;
             transform: translateY(0);
           }
+        }
+        
+        /* Add smooth backdrop filter support */
+        .backdrop-blur-xl {
+          -webkit-backdrop-filter: blur(24px);
+          backdrop-filter: blur(24px);
+        }
+        
+        .backdrop-blur-2xl {
+          -webkit-backdrop-filter: blur(40px);
+          backdrop-filter: blur(40px);
+        }
+        
+        .backdrop-blur-sm {
+          -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
         }
       `}</style>
     </nav>

@@ -1,17 +1,20 @@
-// App.jsx
-
-import HeroSection from './components/HeroSection'
-import Navbar from './Layout/Navbar'
-// import other components
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./Layout/Navbar";
+import Footer from "./Layout/Footer";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="App">
-     <Navbar/>
-      <HeroSection />
-      {/* other components */}
-    </div>
-  )
+    <>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+
+      <Footer />
+    </>
+  );
 }
 
-export default App
+export default App;

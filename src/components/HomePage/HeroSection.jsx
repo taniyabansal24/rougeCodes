@@ -95,7 +95,7 @@ const HeroSection = () => {
           {/* DESIGN (layered for reveal) */}
           <div className="relative">
             <h1 
-              className="text-[15vw] font-bold leading-none tracking-tight"
+              className="hero-heading"
               style={{ color: 'var(--accent)' }} // Changed from --text-high to --accent
             >
               Design
@@ -103,7 +103,7 @@ const HeroSection = () => {
 
             <h1
               ref={designRevealRef}
-              className="absolute top-0 left-0 text-[12vw] font-bold leading-none tracking-tight"
+              className="absolute top-0 left-0 hero-heading"
               style={{ 
                 color: 'var(--text-low)',
                 clipPath: "inset(0 100% 0 0)" 
@@ -147,7 +147,7 @@ const HeroSection = () => {
           {/* THAT MATTER (layered for reveal) */}
           <div className="relative overflow-hidden">
             <h1 
-              className="text-[15vw] font-bold leading-none tracking-tight"
+              className="hero-heading"
               style={{ color: 'var(--text-low)' }}
             >
               that matter
@@ -155,7 +155,7 @@ const HeroSection = () => {
 
             <h1
               ref={thatRevealRef}
-              className="absolute top-0 left-0 text-[15vw] font-bold leading-none tracking-tight"
+              className="absolute top-0 left-0 hero-heading"
               style={{ 
                 color: 'var(--accent)', // Changed from --text-high to --accent
                 clipPath: "inset(0 100% 0 0)" 
