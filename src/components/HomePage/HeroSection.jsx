@@ -86,7 +86,7 @@ const HeroSection = () => {
       className="relative h-screen overflow-hidden"
       style={{ backgroundColor: 'var(--bg)' }}
     >
-      <div className="flex h-screen items-center px-12">
+     <div className="flex h-screen items-center px-6 sm:px-11 md:px-12 lg:pl-20 lg:pr-12">
         {/* TITLE TRACK */}
         <div
           ref={titleTrackRef}

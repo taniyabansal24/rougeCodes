@@ -67,7 +67,7 @@ const Navbar = () => {
         <div className="absolute inset-0 -z-10 bg-linear-to-r from-white/5 via-transparent to-white/5" />
       )}
       
-      <Container className="mx-auto flex justify-between items-center relative">
+      <div className="container mx-auto flex justify-between items-center relative">
         {/* Logo */}
         <div
           className="text-2xl md:text-3xl font-medium tracking-tight cursor-pointer group"
@@ -161,7 +161,7 @@ const Navbar = () => {
             ))}
           </div>
         </div>
-      </Container>
+      </div>
 
       <style jsx>{`
         @keyframes slideIn {
