@@ -249,74 +249,74 @@ const WhyUs = () => {
     },
   ];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const cardsWrapper = cardsWrapperRef.current;
-      const headingElement = titleRef.current;
-      
-      // Get positions
-      const headingRect = headingElement.getBoundingClientRect();
-      const lastCard = cardsWrapper.children[cardsWrapper.children.length - 1];
-      
-      if (!lastCard) return;
-      
-      const lastCardRect = lastCard.getBoundingClientRect();
-      
-      // Calculate minimal scroll needed for last card to align with heading
-      const headingTop = headingRect.top;
-      const lastCardTop = lastCardRect.top;
-      
-      // Further reduced calculations for minimal scrolling
-      const targetLastCardPosition = headingTop + 20; // Much smaller offset
-      const scrollDistance = Math.max(0, lastCardTop - targetLastCardPosition - 150); // Reduced buffer
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    const cardsWrapper = cardsWrapperRef.current;
+    const headingElement = titleRef.current;
+    
+    // Get positions
+    const headingRect = headingElement.getBoundingClientRect();
+    const lastCard = cardsWrapper.children[cardsWrapper.children.length - 1];
+    
+    if (!lastCard) return;
+    
+    const lastCardRect = lastCard.getBoundingClientRect();
+    
+    // Calculate minimal scroll needed for last card to align with heading
+    const headingTop = headingRect.top;
+    const lastCardTop = lastCardRect.top;
+    
+    // Further reduced calculations for minimal scrolling
+    const targetLastCardPosition = headingTop + 20; // Much smaller offset
+    const scrollDistance = Math.max(0, lastCardTop - targetLastCardPosition - 150); // Reduced buffer
 
-      // Minimized timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: `+=${Math.min(scrollDistance + 50, 200)}`, // Significantly reduced end
-          pin: true,
-          scrub: 0.8, // Faster scrub
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          // Clean up after pin is released
-          onLeave: () => {
-            gsap.set(cardsWrapper, { clearProps: "transform" });
-          },
-          onLeaveBack: () => {
-            gsap.set(cardsWrapper, { clearProps: "transform" });
-          }
+    // MODIFIED: Slightly increased end distance for slower scroll
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: `+=${Math.min(scrollDistance + 100, 300)}`, // Increased from +50 to +100, max from 200 to 300
+        pin: true,
+        scrub: 1.2, // Increased from 0.8 to 1.2 for smoother, slightly slower response
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        // Clean up after pin is released
+        onLeave: () => {
+          gsap.set(cardsWrapper, { clearProps: "transform" });
         },
-      });
+        onLeaveBack: () => {
+          gsap.set(cardsWrapper, { clearProps: "transform" });
+        }
+      },
+    });
 
-      // Faster heading animation
-      tl.fromTo(
-        titleRef.current,
-        {
-          y: 10,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.3,
-          ease: "power1.out",
-        },
-        0
-      );
+    // Keep heading animation at same speed
+    tl.fromTo(
+      titleRef.current,
+      {
+        y: 10,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.3,
+        ease: "power1.out",
+      },
+      0
+    );
 
-      // Quick card movement
-      tl.to(cardsWrapper, {
-        y: -scrollDistance,
-        ease: "power1.inOut",
-        duration: 0.6,
-      }, 0.1);
-      
-    }, sectionRef);
+    // MODIFIED: Slightly slower card movement
+    tl.to(cardsWrapper, {
+      y: -scrollDistance,
+      ease: "power2.inOut", // Changed from power1.inOut for smoother motion
+      duration: 0.9, // Increased from 0.6 to 0.9
+    }, 0.1);
+    
+  }, sectionRef);
 
-    return () => ctx.revert();
-  }, []);
+  return () => ctx.revert();
+}, []);
 
   return (
     <>
