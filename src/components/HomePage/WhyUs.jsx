@@ -33,8 +33,8 @@ const ProgressCard = ({ percentage, description }) => {
       { width: "0%" },
       {
         width: `${percentage}%`,
-        duration: 1.8,
-        ease: "power3.out",
+        duration: 1.2,
+        ease: "power2.out",
       },
       0
     );
@@ -44,8 +44,8 @@ const ProgressCard = ({ percentage, description }) => {
       { val: 0 },
       { val: percentage },
       {
-        duration: 1.8,
-        ease: "power3.out",
+        duration: 1.2,
+        ease: "power2.out",
         onUpdate: function () {
           if (numberRef.current) {
             numberRef.current.innerText = Math.floor(
@@ -68,7 +68,6 @@ const ProgressCard = ({ percentage, description }) => {
         <div className="col-span-7">
           <div className="stat-number text-high shrink-0">
             <span>Impact</span>
-            {/* <span className="ml-1">%</span> */}
           </div>
         </div>
 
@@ -77,14 +76,12 @@ const ProgressCard = ({ percentage, description }) => {
 
           {/* PROGRESS BAR */}
           <div className="flex-1 bg-gray-200 rounded-full p-1.25 shadow-inner">
-
             <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
               <div
                 ref={progressRef}
                 className="h-full bg-[#8ba888] rounded-full w-0"
               />
             </div>
-
           </div>
 
           {/* SMALL % */}
@@ -114,11 +111,12 @@ const UsersCard = ({ count, suffix, description, images }) => {
       { val: 0 },
       { val: count },
       {
-        duration: 2,
+        duration: 1.2,
         scrollTrigger: {
           trigger: countRef.current,
           start: "top 80%",
         },
+        ease: "power2.out",
         onUpdate: function () {
           if (countRef.current) {
             countRef.current.innerText = Math.floor(
@@ -175,11 +173,12 @@ const StatsCard = ({ count, suffix, description, icon }) => {
       { val: 0 },
       { val: count },
       {
-        duration: 2,
+        duration: 1.2,
         scrollTrigger: {
           trigger: countRef.current,
           start: "top 80%",
         },
+        ease: "power2.out",
         onUpdate: function () {
           if (countRef.current) {
             countRef.current.innerText = Math.floor(
@@ -253,183 +252,159 @@ const WhyUs = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const cardsWrapper = cardsWrapperRef.current;
-
-      // Get the last card's position relative to the viewport
-      const cardsWrapperRect = cardsWrapper.getBoundingClientRect();
-
-      // Calculate how far the last card needs to move up to align with the heading
-      // We want the last card to be at the same vertical position as the heading
       const headingElement = titleRef.current;
+      
+      // Get positions
       const headingRect = headingElement.getBoundingClientRect();
+      const lastCard = cardsWrapper.children[cardsWrapper.children.length - 1];
+      
+      if (!lastCard) return;
+      
+      const lastCardRect = lastCard.getBoundingClientRect();
+      
+      // Calculate minimal scroll needed for last card to align with heading
+      const headingTop = headingRect.top;
+      const lastCardTop = lastCardRect.top;
+      
+      // Further reduced calculations for minimal scrolling
+      const targetLastCardPosition = headingTop + 20; // Much smaller offset
+      const scrollDistance = Math.max(0, lastCardTop - targetLastCardPosition - 150); // Reduced buffer
 
-      // Calculate the distance the last card needs to travel to align with heading
-      // This takes into account the container padding and desired alignment
-      const containerTopPadding = 50 * 16; // 50rem = 800px
-      const desiredLastCardY =
-        headingRect.top - cardsWrapperRect.top - containerTopPadding;
-
-      // Total scroll distance needed
-      const scrollDistance = Math.abs(desiredLastCardY) - 20; // Added buffer for smooth finish
-
-      // Create master timeline with ScrollTrigger
+      // Minimized timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: `+=${scrollDistance + 600}`, // Added extra for phases
+          end: `+=${Math.min(scrollDistance + 50, 200)}`, // Significantly reduced end
           pin: true,
-          scrub: 1.5,
+          scrub: 0.8, // Faster scrub
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          // Clean up after pin is released
+          onLeave: () => {
+            gsap.set(cardsWrapper, { clearProps: "transform" });
+          },
+          onLeaveBack: () => {
+            gsap.set(cardsWrapper, { clearProps: "transform" });
+          }
         },
       });
 
-      // PHASE 1: Heading animates in
+      // Faster heading animation
       tl.fromTo(
         titleRef.current,
         {
-          y: 40,
+          y: 10,
           opacity: 0,
         },
         {
-          y: 10,
+          y: 0,
           opacity: 1,
-          duration: 1,
-          ease: "power2.out",
+          duration: 0.3,
+          ease: "power1.out",
         },
+        0
       );
 
-      // PHASE 2: Heading shifts down smoothly
-      tl.to(titleRef.current, {
-        y: 150,
-        duration: 2.5,
-        ease: "none",
-      });
-
-      // PHASE 3: Blank space before cards start
-      tl.to(
-        {},
-        {
-          duration: 0.6,
-        },
-      );
-
-      // PHASE 4: Cards scroll up until last card aligns with heading
+      // Quick card movement
       tl.to(cardsWrapper, {
         y: -scrollDistance,
-        ease: "none",
-        duration: 2,
-      });
-
-      // PHASE 5: Subtle bounce effect at the end
-      tl.to(cardsWrapper, {
-        y: -scrollDistance + 10,
-        duration: 0.15,
         ease: "power1.inOut",
-      }).to(cardsWrapper, {
-        y: -scrollDistance,
-        duration: 0.2,
-        ease: "back.out(1.2)",
-      });
+        duration: 0.6,
+      }, 0.1);
+      
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden "
-      style={{ height: "100vh" }}
-    >
-      {/* Sticky container - full height */}
-      <div
-        ref={stickyRef}
-        className="sticky top-0 h-screen flex overflow-hidden"
+    <>
+      <section
+        ref={sectionRef}
+        className="relative overflow-visible"
+        style={{ height: "80vh" }} // Reduced from 100vh to 80vh
       >
-        <div className="container mx-auto container-padding h-full">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 xl:gap-24 h-full">
-            {/* Left side - Heading */}
-            <div className="lg:w-5/12 h-full">
-              <div className="flex items-start h-full pt-20 lg:pt-32">
-                <div
-                  ref={titleRef}
-                  className="will-change-transform"
-                  style={{
-                    opacity: 0,
-                    transform: "translateY(40px)",
-                  }}
-                >
-                  <h2 className="section-heading text-high mb-2">Why client</h2>
-                  <h2 className="section-heading text-accent">choose us</h2>
+        {/* Sticky container - adjusted height */}
+        <div
+          ref={stickyRef}
+          className="sticky top-0 flex overflow-visible"
+          style={{ height: "80vh" }} // Match parent height
+        >
+          <div className="container mx-auto container-padding h-full">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 xl:gap-12 h-full"> {/* Reduced gaps */}
+              {/* Left side - Heading */}
+              <div className="lg:w-5/12 h-full">
+                <div className="flex items-start h-full pt-12 lg:pt-16"> {/* Reduced padding */}
+                  <div
+                    ref={titleRef}
+                    className="will-change-transform"
+                    style={{
+                      opacity: 0,
+                      transform: "translateY(10px)",
+                    }}
+                  >
+                    <h2 className="section-heading text-high mb-1">Why client</h2> {/* Reduced margin */}
+                    <h2 className="section-heading text-accent">choose us</h2>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Right side - Cards Container */}
-            <div className="lg:w-7/12 h-full">
-              <div className="flex justify-end h-full lg:pt-200">
-                <div className="max-w-130 w-full">
-                  <div className="relative">
-                    <div
-                      className="absolute inset-0 z-10 pointer-events-none"
-                      style={{
-                        opacity: 0.5,
-                        height: "0px",
-                        top: "-100px",
-                      }}
-                    />
+              {/* Right side - Cards Container */}
+              <div className="lg:w-7/12 h-full">
+                <div className="flex justify-end h-full lg:pt-60"> {/* Reduced padding */}
+                  <div className="max-w-130 w-full">
+                    <div className="relative">
+                      <div
+                        ref={cardsWrapperRef}
+                        className="flex flex-col gap-3 will-change-transform" 
+                        style={{
+                          transform: "translateZ(0)",
+                          paddingTop: "0.5rem", // Minimal padding
+                        }}
+                      >
+                        {/* Card 1 - Text */}
+                        <TextCard>
+                          We provide tailored solutions built on creativity,
+                          precision, and trust.
+                        </TextCard>
 
-                    <div
-                      ref={cardsWrapperRef}
-                      className="flex flex-col gap-6 will-change-transform"
-                      style={{
-                        transform: "translateZ(0)",
-                        paddingTop: "8rem",
-                      }}
-                    >
-                      {/* Card 1 - Text */}
-                      <TextCard>
-                        We provide tailored solutions built on creativity,
-                        precision, and trust—ensuring quality results and a
-                        smooth experience every step of the way.
-                      </TextCard>
+                        {/* Card 2 - Progress + 92% */}
+                        <ProgressCard
+                          percentage={92}
+                          description="Client satisfaction rate, fostering long-term relationships"
+                        />
 
-                      {/* Card 2 - Progress + 92% */}
-                      <ProgressCard
-                        percentage={92}
-                        description="Client satisfaction rate, fostering long-term relationships and repeat business"
-                      />
+                        {/* Card 3 - Users + 100+ */}
+                        <UsersCard
+                          count={100}
+                          suffix="+"
+                          description="Active users experiencing our design every day"
+                          images={userImages}
+                        />
 
-                      {/* Card 3 - Users + 100+ */}
-                      <UsersCard
-                        count={100}
-                        suffix="+"
-                        description="Active users experiencing our design every day via products we made"
-                        images={userImages}
-                      />
+                        {/* Card 4 - Lottie + 30K */}
+                        <StatsCard
+                          count={30}
+                          suffix="K"
+                          description="Delivered high-quality projects with exceptional attention"
+                          icon={
+                            <div className="w-16 h-16">
+                              <Lottie
+                                animationData={null}
+                                loop={true}
+                                className="w-full h-full"
+                              />
+                            </div>
+                          }
+                        />
 
-                      {/* Card 4 - Lottie + 30K */}
-                      <StatsCard
-                        count={30}
-                        suffix="K"
-                        description="Delivered a high-quality project with exceptional attention to detail"
-                        icon={
-                          <div className="w-16 h-16">
-                            <Lottie
-                              animationData={null}
-                              loop={true}
-                              className="w-full h-full"
-                            />
-                          </div>
-                        }
-                      />
-
-                      {/* Card 5 - Text */}
-                      <TextCard>
-                        We deliver creative solutions with quality results that
-                        make an impact.
-                      </TextCard>
+                        {/* Card 5 - Text */}
+                        <TextCard>
+                          We deliver creative solutions with quality results that
+                          make an impact.
+                        </TextCard>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -437,8 +412,15 @@ const WhyUs = () => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      
+      {/* Add this style block in your component or global CSS */}
+      <style jsx>{`
+        section {
+          margin-bottom: -2rem; /* Pull next section up */
+        }
+      `}</style>
+    </>
   );
 };
 
