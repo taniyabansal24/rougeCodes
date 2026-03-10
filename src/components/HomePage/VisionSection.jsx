@@ -29,14 +29,14 @@ const VisionSection = () => {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top top",
-        end: "+=200%", // Scroll distance for animation
+        end: "+=150%",
         pin: true,
-        scrub: 1.5, // Smooth scrubbing
+        pinSpacing: true,
+        scrub: 1,
         anticipatePin: 1,
-        invalidateOnRefresh: true, // Helps with responsive
+        invalidateOnRefresh: true,
       },
     });
-
     // Initial setup - images centered
     gsap.set([image1Ref.current, image2Ref.current, image3Ref.current], {
       opacity: 1,
@@ -113,7 +113,7 @@ const VisionSection = () => {
       <Container>
         <div
           ref={containerRef}
-          className="relative h-full w-full flex items-center justify-center pt-34"
+          className="relative z-10 container mx-auto px-4 text-center mt-20 md:mt-36"
         >
           {/* Content Block */}
           <div className="relative z-10 container mx-auto px-4 text-center">
@@ -194,7 +194,7 @@ const VisionSection = () => {
               loading="lazy"
               srcSet="https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20c9c563084ecccba9_img-06-p-500.jpg 500w, https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20c9c563084ecccba9_img-06-p-800.jpg 800w, https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20c9c563084ecccba9_img-06.jpg 860w"
               alt="Mockup"
-              className="absolute w-48 lg:w-64 left-1/2 top-8/12 -translate-x-1/2 -translate-y-1/2 transform rounded-3xl shadow-2xl"
+              className="absolute w-48 lg:w-64 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-3xl shadow-2xl"
             />
             <img
               ref={image2Ref}
@@ -202,7 +202,7 @@ const VisionSection = () => {
               loading="lazy"
               srcSet="https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20882f18113efc6658_img-02-p-500.jpg 500w, https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20882f18113efc6658_img-02-p-800.jpg 800w, https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20882f18113efc6658_img-02.jpg 860w"
               alt="Mockup"
-              className="absolute w-56 lg:w-72 left-1/2 top-8/12 -translate-x-1/2 -translate-y-1/2 transform rounded-3xl shadow-2xl"
+              className="absolute w-56 lg:w-72 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-3xl shadow-2xl"
             />
             <img
               ref={image3Ref}
@@ -210,7 +210,7 @@ const VisionSection = () => {
               loading="lazy"
               srcSet="https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20c48e40bd24eb715c_img-08-p-500.jpg 500w, https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20c48e40bd24eb715c_img-08-p-800.jpg 800w, https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20c48e40bd24eb715c_img-08.jpg 860w"
               alt="Mockup"
-              className="absolute w-64 lg:w-72 left-1/2 top-8/12 -translate-x-1/2 -translate-y-1/2 transform rounded-3xl shadow-2xl"
+              className="absolute w-64 lg:w-72 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-3xl shadow-2xl"
             />
           </div>
         </div>
