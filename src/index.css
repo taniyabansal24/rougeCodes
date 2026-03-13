@@ -213,3 +213,44 @@
   .border-accent { border-color: #8ba888; }
 
 }
+
+
+
+/* Add to your global CSS */
+
+/* Team member hover effects */
+.team-member-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+/* Process step animations */
+.process-step {
+  transition: all 0.3s var(--ease);
+}
+
+.process-step:hover .step-number {
+  background-color: var(--accent);
+  color: var(--surface);
+}
+
+/* Stats counter animation */
+.stat-number {
+  transition: color 0.3s ease;
+}
+
+/* Value card enhancements */
+.value-card {
+  backdrop-filter: blur(10px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .process-step {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .team-member-bio {
+    font-size: 0.875rem;
+  }
+}

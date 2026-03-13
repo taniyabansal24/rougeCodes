@@ -13,17 +13,17 @@ const HomePage = () => {
       <div className="section">
         <VisionSection />
       </div>
-         <div className="">
-        <WhyUs/>
-      </div>
-      <div className="">
+      <div className="section">
         <Project />
       </div>
-      <div className="section">
-        <Services/>
+      <div className="pt-20 md:pt-24">
+        <Services />
       </div>
       <div className="">
-        <CallToAction/>
+        <WhyUs />
+      </div>
+      <div className="">
+        <CallToAction />
       </div>
     </div>
   );
