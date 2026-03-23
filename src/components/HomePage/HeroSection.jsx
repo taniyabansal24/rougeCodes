@@ -57,6 +57,12 @@ const HeroSection = () => {
         stroke: "var(--surface)",
         duration: 0.15
       }, "<");
+      
+      // NEW: Change background color when SVG color changes
+      tl.to(sectionRef.current, {
+        backgroundColor: "#f1ebe1",
+        duration: 0.15
+      }, "<");
 
       // PHASE 3 — Horizontal Scroll
       tl.to(titleTrackRef.current, {
@@ -96,7 +102,7 @@ const HeroSection = () => {
           <div className="relative">
             <h1 
               className="hero-heading"
-              style={{ color: 'var(--accent)' }} // Changed from --text-high to --accent
+              style={{ color: 'var(--accent)' }}
             >
               Design
             </h1>
@@ -131,7 +137,7 @@ const HeroSection = () => {
               >
                 <g
                   ref={svgGroupRef}
-                  stroke="black" // Changed from --text-high to --accent
+                  stroke="black"
                   strokeWidth="10"
                   strokeLinecap="round"
                 >
@@ -157,7 +163,7 @@ const HeroSection = () => {
               ref={thatRevealRef}
               className="absolute top-0 left-0 hero-heading"
               style={{ 
-                color: 'var(--accent)', // Changed from --text-high to --accent
+                color: 'var(--accent)',
                 clipPath: "inset(0 100% 0 0)" 
               }}
             >

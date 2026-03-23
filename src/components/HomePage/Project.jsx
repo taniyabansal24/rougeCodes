@@ -223,7 +223,7 @@ const Project = () => {
             Our Work
           </span>
           <h2 className="section-heading text-high mb-6">Selected Projects</h2>
-          <p className="text-body">
+          <p className="text-body text-mid">
             Explore some of the products and brands we’ve helped build.
           </p>
         </div>

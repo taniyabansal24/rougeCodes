@@ -309,23 +309,22 @@ const Services = () => {
       {/* Header Section */}
       <div className="container mx-auto px-4 py-20 max-w-3xl">
         <div className="text-center">
-          <span className="text-subtitle-accent text-accent border-accent/20">
+          <span className="text-label text-accent mb-3 inline-block">
               What We Do
             </span>
           <h1
-            className="text-4xl md:text-5xl font-light mb-4"
-            style={{ color: "#1a1a1a" }}
+            className="section-heading text-high mb-6"
           >
             Services we provide
           </h1>
-          <p className="text-lg" style={{ color: "#666666" }}>
+          <p className="text-body text-mid">
             Scroll down to explore our expertise
           </p>
         </div>
       </div>
 
       {/* Stacking Cards Container */}
-      <div className="container mx-auto px-4 max-w-5xl mb-24">
+      <div className="container mx-auto px-4 max-w-6xl mb-24">
         <ul
           ref={stackRef}
           className="stack-cards relative"
@@ -375,11 +374,11 @@ const Services = () => {
                     </p>
 
                     {/* Features */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 ">
                       {service.features.map((feature, idx) => (
                         <span
                           key={idx}
-                         className="feature-tag"
+                         className="feature-tag px-4 py-2 rounded-full text-sm"
                           style={{
                             backgroundColor: "rgba(139, 168, 136, 0.1)",
                             color: "#666666",
