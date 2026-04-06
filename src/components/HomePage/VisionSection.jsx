@@ -22,7 +22,36 @@ const VisionSection = () => {
       subtitleRef.current,
       ...textLinesRef.current,
       buttonRef.current,
-    ].filter(Boolean); // Filter out any null/undefined refs
+    ].filter(Boolean);
+
+    // CRITICAL FIX: Set final positions immediately on mount
+    // This ensures images start at their final positions
+    // Then they will animate TO these positions
+    const setFinalPositions = () => {
+      // Use FIXED PIXEL VALUES instead of vw/vh
+      // These values are consistent across ALL devices
+      const finalPositions = {
+        image1: { x: -280, y: -200 },  // Top-left
+        image2: { x: 280, y: -200 },   // Top-right
+        image3: { x: 0, y: 280 }        // Bottom-center
+      };
+      
+      // Apply final positions directly
+      gsap.set(image1Ref.current, { x: finalPositions.image1.x, y: finalPositions.image1.y });
+      gsap.set(image2Ref.current, { x: finalPositions.image2.x, y: finalPositions.image2.y });
+      gsap.set(image3Ref.current, { x: finalPositions.image3.x, y: finalPositions.image3.y });
+      
+      return finalPositions;
+    };
+    
+    const finalPositions = setFinalPositions();
+
+    // Set initial text state
+    gsap.set(allTextElements, {
+      scale: 1.5,
+      opacity: 0,
+      y: 40,
+    });
 
     // Create the timeline
     const tl = gsap.timeline({
@@ -37,56 +66,29 @@ const VisionSection = () => {
         invalidateOnRefresh: true,
       },
     });
-    // Initial setup - images centered
-    gsap.set([image1Ref.current, image2Ref.current, image3Ref.current], {
-      opacity: 1,
-      scale: 1,
-    });
 
-    // Set initial text state (hidden/zoomed) for ALL text elements
-    gsap.set(allTextElements, {
-      scale: 1.5,
-      opacity: 0,
-      y: 40,
-    });
-
-    // PHASE 1: Images move to FINAL CORNER POSITIONS with viewport-relative distances
-    tl.to(
+    // ANIMATE FROM CENTER TO FINAL POSITIONS
+    // Start from center (0,0)
+    tl.fromTo(
       image1Ref.current,
-      {
-        x: "-40vw", // Move far left using viewport width
-        y: "-30vh", // Move far up using viewport height
-        scale: 0.8,
-        duration: 1,
-        ease: "power2.out",
-      },
-      0,
+      { x: 0, y: 0, scale: 1 },
+      { x: finalPositions.image1.x, y: finalPositions.image1.y, scale: 0.8, duration: 1, ease: "power2.out" },
+      0
     )
-      .to(
-        image2Ref.current,
-        {
-          x: "40vw", // Move far right using viewport width
-          y: "-30vh", // Move far up using viewport height
-          scale: 0.8,
-          duration: 1,
-          ease: "power2.out",
-        },
-        0,
-      )
-      .to(
-        image3Ref.current,
-        {
-          x: 0, // Stay centered horizontally
-          y: "35vh", // Move far down using viewport height
-          scale: 0.8,
-          duration: 1,
-          ease: "power2.out",
-        },
-        0,
-      );
-
-    // PHASE 2: ALL text reveals (staggered) - including subtitle and button
-    tl.to(
+    .fromTo(
+      image2Ref.current,
+      { x: 0, y: 0, scale: 1 },
+      { x: finalPositions.image2.x, y: finalPositions.image2.y, scale: 0.8, duration: 1, ease: "power2.out" },
+      0
+    )
+    .fromTo(
+      image3Ref.current,
+      { x: 0, y: 0, scale: 1 },
+      { x: finalPositions.image3.x, y: finalPositions.image3.y, scale: 0.8, duration: 1, ease: "power2.out" },
+      0
+    )
+    // Text reveals
+    .to(
       allTextElements,
       {
         scale: 1,
@@ -96,8 +98,8 @@ const VisionSection = () => {
         duration: 1.2,
         ease: "power3.out",
       },
-      0.8,
-    ); // Start when images are almost done moving
+      0.8
+    );
 
     // Cleanup
     return () => {
@@ -117,7 +119,7 @@ const VisionSection = () => {
         >
           {/* Content Block */}
           <div className="relative z-10 container mx-auto px-4 text-center">
-            {/* Subtitle - Using consistent text-subtitle-accent class */}
+            {/* Subtitle */}
             <div ref={subtitleRef} className="mb-8">
               <div className="text-subtitle-accent text-accent border-accent/20">
                 Let's Design Your Vision
@@ -137,12 +139,10 @@ const VisionSection = () => {
                   ref={(el) => (textLinesRef.current[index] = el)}
                   className="relative"
                 >
-                  {/* Shadow text */}
-                  <h2 className=" cta-heading text-low opacity-30 absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
+                  <h2 className="cta-heading text-low opacity-30 absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
                     {text}
                   </h2>
-                  {/* Main text */}
-                  <h2 className=" cta-heading text-high relative left-1/2 -translate-x-1/2 whitespace-nowrap">
+                  <h2 className="cta-heading text-high relative left-1/2 -translate-x-1/2 whitespace-nowrap">
                     {text}
                   </h2>
                 </div>
@@ -194,7 +194,7 @@ const VisionSection = () => {
               loading="lazy"
               srcSet="https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20c9c563084ecccba9_img-06-p-500.jpg 500w, https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20c9c563084ecccba9_img-06-p-800.jpg 800w, https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20c9c563084ecccba9_img-06.jpg 860w"
               alt="Mockup"
-              className="absolute w-48 lg:w-64 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-3xl shadow-2xl"
+              className="absolute w-64 lg:w-72 left-1/4 top-1/2 -translate-x-1/4  -translate-y-1/2 transform rounded-3xl shadow-2xl"
             />
             <img
               ref={image2Ref}
@@ -202,7 +202,7 @@ const VisionSection = () => {
               loading="lazy"
               srcSet="https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20882f18113efc6658_img-02-p-500.jpg 500w, https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20882f18113efc6658_img-02-p-800.jpg 800w, https://cdn.prod.website-files.com/682b7a5d0262d836f09f8093/682b9d20882f18113efc6658_img-02.jpg 860w"
               alt="Mockup"
-              className="absolute w-56 lg:w-72 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-3xl shadow-2xl"
+              className="absolute w-64 lg:w-72 right-1/4 top-1/2 -translate-x-1/4 -translate-y-1/2 transform rounded-3xl shadow-2xl"
             />
             <img
               ref={image3Ref}

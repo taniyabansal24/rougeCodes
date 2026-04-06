@@ -64,7 +64,7 @@ const Project = () => {
   const projects = [
     {
       id: 1,
-      title: "Barrett Plastic Surgery",
+      title: "Trusty Money",
       category: "Branding, Website",
       icon: "grid",
       image:
@@ -92,56 +92,56 @@ const Project = () => {
       imageSrcset:
         "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64a41e6ef1b58a94515742e2_Instead%20portfolio-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64a41e6ef1b58a94515742e2_Instead%20portfolio-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64a41e6ef1b58a94515742e2_Instead%20portfolio.png 848w",
     },
-    {
-      id: 4,
-      title: "Js for Webflow",
-      category: "Product design",
-      icon: "both",
-      image:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe28f063d905a5a4e9e7_JS%20for%20Webflow.png",
-      imageSrcset:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe28f063d905a5a4e9e7_JS%20for%20Webflow-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe28f063d905a5a4e9e7_JS%20for%20Webflow-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe28f063d905a5a4e9e7_JS%20for%20Webflow.png 848w",
-    },
-    {
-      id: 5,
-      title: "ClubRare",
-      category: "UX design, Landing page development",
-      icon: "both",
-      image:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3071cdd4a039a96a0f_ClubRare.png",
-      imageSrcset:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3071cdd4a039a96a0f_ClubRare-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3071cdd4a039a96a0f_ClubRare-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3071cdd4a039a96a0f_ClubRare.png 848w",
-    },
-    {
-      id: 6,
-      title: "Kumulus Data",
-      category: "Website, Branding",
-      icon: "both",
-      image:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe36aebda2b70f596ddd_Kumulus.png",
-      imageSrcset:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe36aebda2b70f596ddd_Kumulus-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe36aebda2b70f596ddd_Kumulus-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe36aebda2b70f596ddd_Kumulus.png 848w",
-    },
-    {
-      id: 7,
-      title: "Hotel La Luz",
-      category: "Branding, Website",
-      icon: "simple",
-      image:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3b6d947115e5162caf_La%20Luz.png",
-      imageSrcset:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3b6d947115e5162caf_La%20Luz-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3b6d947115e5162caf_La%20Luz-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3b6d947115e5162caf_La%20Luz.png 848w",
-    },
-    {
-      id: 8,
-      title: "Holistik Real Estate",
-      category: "Website, Branding",
-      icon: "both",
-      image:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe49c7833bbc70cf75f0_Holistik%20Real%20Estate.png",
-      imageSrcset:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe49c7833bbc70cf75f0_Holistik%20Real%20Estate-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe49c7833bbc70cf75f0_Holistik%20Real%20Estate-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe49c7833bbc70cf75f0_Holistik%20Real%20Estate.png 848w",
-    },
+    // {
+    //   id: 4,
+    //   title: "Js for Webflow",
+    //   category: "Product design",
+    //   icon: "both",
+    //   image:
+    //     "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe28f063d905a5a4e9e7_JS%20for%20Webflow.png",
+    //   imageSrcset:
+    //     "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe28f063d905a5a4e9e7_JS%20for%20Webflow-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe28f063d905a5a4e9e7_JS%20for%20Webflow-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe28f063d905a5a4e9e7_JS%20for%20Webflow.png 848w",
+    // },
+    // {
+    //   id: 5,
+    //   title: "ClubRare",
+    //   category: "UX design, Landing page development",
+    //   icon: "both",
+    //   image:
+    //     "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3071cdd4a039a96a0f_ClubRare.png",
+    //   imageSrcset:
+    //     "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3071cdd4a039a96a0f_ClubRare-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3071cdd4a039a96a0f_ClubRare-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3071cdd4a039a96a0f_ClubRare.png 848w",
+    // },
+    // {
+    //   id: 6,
+    //   title: "Kumulus Data",
+    //   category: "Website, Branding",
+    //   icon: "both",
+    //   image:
+    //     "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe36aebda2b70f596ddd_Kumulus.png",
+    //   imageSrcset:
+    //     "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe36aebda2b70f596ddd_Kumulus-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe36aebda2b70f596ddd_Kumulus-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe36aebda2b70f596ddd_Kumulus.png 848w",
+    // },
+    // {
+    //   id: 7,
+    //   title: "Hotel La Luz",
+    //   category: "Branding, Website",
+    //   icon: "simple",
+    //   image:
+    //     "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3b6d947115e5162caf_La%20Luz.png",
+    //   imageSrcset:
+    //     "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3b6d947115e5162caf_La%20Luz-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3b6d947115e5162caf_La%20Luz-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe3b6d947115e5162caf_La%20Luz.png 848w",
+    // },
+    // {
+    //   id: 8,
+    //   title: "Holistik Real Estate",
+    //   category: "Website, Branding",
+    //   icon: "both",
+    //   image:
+    //     "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe49c7833bbc70cf75f0_Holistik%20Real%20Estate.png",
+    //   imageSrcset:
+    //     "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe49c7833bbc70cf75f0_Holistik%20Real%20Estate-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe49c7833bbc70cf75f0_Holistik%20Real%20Estate-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/6410fe49c7833bbc70cf75f0_Holistik%20Real%20Estate.png 848w",
+    // },
   ];
 
   // Replace IntersectionObserver with center-based scroll detection
