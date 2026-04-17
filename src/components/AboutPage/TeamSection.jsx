@@ -68,25 +68,25 @@ const TeamSection = () => {
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400",
       bio: "Sarthak specializes in scalable architectures and emerging technologies, ensuring our solutions are future-ready.",
     },
-    {
-      name: "Taniya Bansal",
-      role: "Technical Lead",
-      image: techLeadImage,
-      bio: "Taniya is a leader, hustler, and coder focused on building scalable, efficient, and future-ready tech solutions.",
-    },
-    {
-      name: "Satya Prakash",
-      role: "Strategy Lead",
-      image: designerImage,
-      bio: "Satya blends business insight and creativity to craft smart strategies that deliver consistent and impactful results.",
-    },
-    {
-      name: "Aayush Mehta",
-      role: "Strategy Lead",
-      image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400",
-      bio: "Aayush combines business acumen with creative thinking to develop strategies that drive real results.",
-    },
+    // {
+    //   name: "Taniya Bansal",
+    //   role: "Technical Lead",
+    //   image: techLeadImage,
+    //   bio: "Taniya is a leader, hustler, and coder focused on building scalable, efficient, and future-ready tech solutions.",
+    // },
+    // {
+    //   name: "Satya Prakash",
+    //   role: "Strategy Lead",
+    //   image: designerImage,
+    //   bio: "Satya blends business insight and creativity to craft smart strategies that deliver consistent and impactful results.",
+    // },
+    // {
+    //   name: "Aayush Mehta",
+    //   role: "Strategy Lead",
+    //   image:
+    //     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400",
+    //   bio: "Aayush combines business acumen with creative thinking to develop strategies that drive real results.",
+    // },
   ];
 
   return (
