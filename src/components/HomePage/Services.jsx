@@ -309,15 +309,13 @@ const Services = () => {
       {/* Header Section */}
       <div className="container mx-auto px-4 py-20 max-w-3xl">
         <div className="text-center">
-          <span className="text-label text-accent mb-3 inline-block">
-              What We Do
-            </span>
-          <h1
-            className="section-heading text-high mb-6"
-          >
+          <span className="badge text-accent mb-3 inline-block">
+            What We Do
+          </span>
+          <h1 className="section-heading text-high mb-6">
             Services we provide
           </h1>
-          <p className="text-body text-mid">
+          <p className="subheading text-mid">
             Scroll down to explore our expertise
           </p>
         </div>
@@ -351,23 +349,17 @@ const Services = () => {
 
                     {/* Title */}
                     <div>
-                      <h2
-                        className="service-title"
-                        style={{ color: "#1a1a1a" }}
-                      >
+                      <h2 className="card-title" style={{ color: "#1a1a1a" }}>
                         {service.title}
                       </h2>
-                      <p
-                        className="service-subtitle"
-                        style={{ color: service.color }}
-                      >
+                      <p className="badge" style={{ color: service.color }}>
                         {service.subtitle}
                       </p>
                     </div>
 
                     {/* Description */}
                     <p
-                      className="text-base leading-relaxed"
+                      className="text-body leading-relaxed"
                       style={{ color: "#666666" }}
                     >
                       {service.description}
@@ -378,7 +370,7 @@ const Services = () => {
                       {service.features.map((feature, idx) => (
                         <span
                           key={idx}
-                         className="feature-tag px-4 py-2 rounded-full text-sm"
+                          className="text-body px-4 py-2 rounded-full"
                           style={{
                             backgroundColor: "rgba(139, 168, 136, 0.1)",
                             color: "#666666",
@@ -392,13 +384,29 @@ const Services = () => {
                     {/* CTA */}
                     <div>
                       <button
-                        className="btn-text group relative px-6 py-2.5 rounded-lg transition-all duration-300 hover-lift "
+                        className="group relative px-8 py-4 rounded-lg btn-text transition-all duration-500 overflow-hidden hover:shadow-2xl hover:-translate-y-1 bg-accent text-white"
                         style={{
-                          backgroundColor: "#8ba888",
-                          color: "#ffffff",
+                          boxShadow:
+                            "0 10px 25px -5px rgba(139, 168, 136, 0.4)",
                         }}
                       >
-                        Learn More →
+                        <span className="absolute inset-0 w-full h-full transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                        <span className="relative flex items-center justify-center gap-2">
+                          Learn More
+                          <svg
+                            className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                          </svg>
+                        </span>
                       </button>
                     </div>
                   </div>

@@ -219,11 +219,9 @@ const Project = () => {
       {/* Header Section - Following system pattern */}
       <div className="border-b border-gray-200">
         <div className="container mx-auto px-4 py-20 max-w-3xl text-center">
-          <span className="text-label text-accent mb-3 inline-block">
-            Our Work
-          </span>
+          <span className="badge mb-3 inline-block">Our Work</span>
           <h2 className="section-heading text-high mb-6">Selected Projects</h2>
-          <p className="text-body text-mid">
+          <p className="subheading text-mid">
             Explore some of the products and brands we’ve helped build.
           </p>
         </div>
@@ -256,11 +254,11 @@ const Project = () => {
                           {renderIcon(project.icon, isActive)}
                         </div>
                         <h3 className="card-title">{project.title}</h3>
-                        <span className="hidden md:inline text-body text-low">
+                        <span className="subheading hidden md:inline text-low">
                           —
                         </span>
                         <span
-                          className={`hidden md:inline text-body transition-colors duration-300 ${
+                          className={`subheading hidden md:inline transition-colors duration-300 ${
                             isActive ? "text-low" : "text-mid"
                           }`}
                         >
@@ -268,7 +266,7 @@ const Project = () => {
                         </span>
                         {/* Mobile category */}
                         <span
-                          className={`md:hidden w-full text-body transition-colors duration-300 ${
+                          className={`subheading md:hidden w-full transition-colors duration-300 ${
                             isActive ? "text-low" : "text-mid"
                           } mt-1`}
                         >
@@ -281,7 +279,7 @@ const Project = () => {
                     <div className="shrink-0 ml-6">
                       <a
                         href={`mailto:matthisgarnier.contact@gmail.com?subject=I%20loved%20${encodeURIComponent(project.title)}%20project%2C%20Matthis%20!`}
-                        className={`inline-flex items-center gap-2 px-4 py-2 btn-text border rounded-full transition-all duration-500 hover:scale-105 ${
+                        className={`inline-flex items-center gap-2 px-4 py-2 subheading border rounded-full transition-all duration-500 hover:scale-105 ${
                           isActive
                             ? "border-white text-white hover:bg-white hover:text-black"
                             : "border-current text-current hover:bg-gray-100"
@@ -290,7 +288,7 @@ const Project = () => {
                         <div className="w-4 h-4">
                           <LockIcon isActive={isActive} />
                         </div>
-                        <span>Contact</span>
+                        <span className="subheading">Contact</span>
                       </a>
                     </div>
                   </div>

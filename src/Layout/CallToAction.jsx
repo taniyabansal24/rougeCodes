@@ -92,20 +92,20 @@ const CallToAction = () => {
         </svg>
       </div>
 
-      <div className="container mx-auto px-4 max-w-4xl relative z-10">
+      <div className="container mx-auto px-4 relative z-10">
         <div 
           ref={contentRef}
           className="cta-content text-center space-y-8"
         >
           {/* Pre-heading - Using same text-subtitle-accent class as Vision section */}
           <div className="mb-8">
-            <span className="text-subtitle-accent text-accent border-accent/20">
+            <span className="badge text-accent border-accent/20">
               Let's Work Together
             </span>
           </div>
 
           {/* Main heading */}
-          <h2 className="heading cta-heading text-high">
+          <h2 className="section-heading text-high">
             Ready to bring your 
             <span className="relative inline-block mx-2">
               <span className="text-accent">vision</span>
@@ -115,7 +115,7 @@ const CallToAction = () => {
           </h2>
 
           {/* Description */}
-          <p className="description cta-description text-mid">
+          <p className="subheading text-mid max-w-2xl mx-auto">
             Let's discuss how our services can help transform your ideas into reality. 
             We're just one message away from starting your next great project.
           </p>

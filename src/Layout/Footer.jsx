@@ -53,7 +53,7 @@ const Footer = () => {
             
             {/* Tagline */}
             <p 
-              className="text-base leading-relaxed max-w-md"
+              className="subheading max-w-md"
               style={{ color: '#666666' }}
             >
               Industrial grade digital engineering. We bridge the gap between abstract ideas and production-ready reality.
@@ -109,17 +109,17 @@ const Footer = () => {
           {/* Navigation - 3 columns */}
           <div className="lg:col-span-3 lg:pl-8">
             <h3 
-              className="footer-heading"
+              className="badge font-semibold mb-5"
               style={{ color: '#8ba888' }}
             >
               Navigate
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {['Home', 'About', 'Services', 'Careers', 'Contact'].map((item) => (
                 <li key={item}>
                   <a
                     href={`/${item.toLowerCase()}`}
-                    className="group inline-flex items-center gap-2 footer-link transition-all duration-300 hover:-translate-y-0.5"
+                    className="text-body group inline-flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
                     style={{ color: '#666666' }}
                   >
                     <span 
@@ -136,7 +136,7 @@ const Footer = () => {
           {/* Contact - 4 columns - Made more compact and balanced */}
           <div className="lg:col-span-4">
             <h3 
-              className="text-sm font-medium uppercase tracking-wider mb-6"
+              className="badge font-semibold mb-6"
               style={{ color: '#8ba888' }}
             >
               Contact
@@ -146,7 +146,7 @@ const Footer = () => {
               {/* Email */}
               <a
                 href="mailto:hello@rougecodes.com"
-                className="group flex items-center gap-3 text-base transition-all duration-300 hover:-translate-y-0.5"
+                className="text-body group flex items-center gap-3 transition-all duration-300 hover:-translate-y-0.5"
                 style={{ color: '#666666' }}
               >
                 <svg 
@@ -158,7 +158,7 @@ const Footer = () => {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span className="truncate">hello@rougecodes.com</span>
+                <span className="truncate">contact@rougecodes.com</span>
               </a>
 
               {/* Phone */}
@@ -176,11 +176,11 @@ const Footer = () => {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span>+91 98765 43210</span>
+                <span>+91 9217327326</span>
               </a>
 
               {/* Address - Made more compact */}
-              <div className="flex items-start gap-3 text-base pt-2">
+              <div className="flex items-start gap-3 text-base">
                 <svg 
                   className="w-5 h-5 flex-shrink-0 mt-0.5" 
                   style={{ color: '#8ba888' }} 
@@ -192,14 +192,15 @@ const Footer = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <span style={{ color: '#666666' }} className="leading-relaxed">
-                  IIT Patna Ecosystem, Bihta, Bihar
+                  C-5, Milap Nagar, Uttam Nagar,<br />
+                New Delhi - 110059
                 </span>
               </div>
             </div>
 
             {/* Quick contact note - fills space nicely */}
             <div className="mt-6 pt-4 border-t border-dashed" style={{ borderColor: 'rgba(139, 168, 136, 0.2)' }}>
-              <p className="text-xs" style={{ color: '#c0c0c0' }}>
+              <p className="text-xs text-accent">
                 <span style={{ color: '#8ba888' }}>✦</span> Available for new projects
               </p>
             </div>

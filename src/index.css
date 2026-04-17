@@ -24,8 +24,6 @@
   --ease: cubic-bezier(0.7, 0, 0.3, 1);
 }
 
-/* Add to your global CSS file */
-
 /* Fade in animation for subtitle and button */
 @keyframes fadeIn {
   from {
@@ -62,81 +60,74 @@
   }
 }
 
-@layer components {
+/* Team member hover effects */
+.team-member-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
 
+/* Stats counter animation */
+.stat-number {
+  transition: color 0.3s ease;
+}
+
+/* Value card enhancements */
+.value-card {
+  backdrop-filter: blur(10px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .process-step {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .team-member-bio {
+    font-size: 0.875rem;
+  }
+}
+
+@layer components {
   /* =================================
      HERO TYPOGRAPHY
      Used in: Hero Section
   ================================= */
+  .badge {
+    @apply text-base;
+    font-family: "Inter Tight", sans-serif;
+    color: #8ba888;
+  }
 
-  .hero-heading,
-  .hero-heading-overlay {
+  .hero-heading {
     @apply text-[14vw] font-medium leading-[0.9] tracking-tight;
     font-family: "Phudu", sans-serif;
     font-weight: 500;
   }
 
-
-  /* =================================
-     MAIN HEADINGS
-     Used in: Services, Vision, Projects, CTA
-  ================================= */
-
-  .section-heading,
-  .section-heading-long,
-  .cta-heading {
+  .section-heading {
     @apply text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] tracking-tight;
     font-family: "Phudu", sans-serif;
     font-weight: 500;
   }
 
+  .subheading {
+    @apply text-base md:text-lg;
+    font-family: "Inter Tight", sans-serif;
+  }
 
-  /* =================================
-     SUB HEADINGS
-     Used in: Service titles, feature headings
-  ================================= */
-
-  .section-subheading,
-  .service-title {
+  .card-title {
     @apply text-3xl md:text-4xl font-light leading-tight tracking-tight;
     font-family: "Phudu", sans-serif;
     font-weight: 500;
   }
 
-
-  /* =================================
-     CARD / ITEM TITLES
-     Used in: Project titles, card titles
-  ================================= */
-
-  .card-title,
-  .project-title {
-    @apply text-xl md:text-2xl font-medium leading-snug;
-    font-family: "Phudu", sans-serif;
-    font-weight: 500;
-  }
-
-
-  /* =================================
-     BODY TEXT
-     Used in: descriptions, paragraphs
-  ================================= */
-
-  .text-body,
-  .cta-description,
-  .service-subtitle,
-  .text-body-lg {
-    @apply text-base md:text-lg leading-relaxed;
+  .text-body {
+    @apply text-base leading-relaxed;
     font-family: "Inter Tight", sans-serif;
   }
 
 
-  /* =================================
-     SMALL TEXT
-     Used in: nav, footer, labels
-  ================================= */
 
-  .text-body-sm,
   .text-subtitle,
   .text-subtitle-accent,
   .nav-link,
@@ -150,18 +141,10 @@
     font-family: "Inter Tight", sans-serif;
   }
 
-
   /* =================================
      STATS NUMBERS
      Used in: counters
   ================================= */
-
-  .stat-number {
-    @apply text-3xl md:text-4xl lg:text-5xl font-light;
-    font-family: "Phudu", sans-serif;
-    font-weight: 500;
-  }
-
 
   /* =================================
      SPACING SYSTEM
@@ -188,7 +171,6 @@
     @apply px-4 md:px-6 lg:px-8;
   }
 
-
   /* =================================
      HOVER EFFECTS
   ================================= */
@@ -205,60 +187,37 @@
     @apply transition-all duration-300 hover:shadow-[0_0_30px_-5px_rgba(139,168,136,0.3)];
   }
 
-
   /* =================================
      COLORS
   ================================= */
 
-  .text-accent { color: #8ba888; }
-  .text-high { color: #1a1a1a; }
-  .text-mid { color: #666666; }
-  .text-low { color: #c0c0c0; }
-
-  .bg-accent { background-color: #8ba888; }
-  .bg-surface { background-color: #ffffff; }
-  .bg-page { background-color: #f9f9f9; }
-
-  .border-accent-light { border-color: rgba(139,168,136,0.2); }
-  .border-accent { border-color: #8ba888; }
-
-}
-   
-/* Add to your global CSS */
-
-/* Team member hover effects */
-.team-member-overlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-}
-
-/* Process step animations */
-.process-step {
-  transition: all 0.3s var(--ease);
-}
-
-.process-step:hover .step-number {
-  background-color: var(--accent);
-  color: var(--surface);
-}
-
-/* Stats counter animation */
-.stat-number {
-  transition: color 0.3s ease;
-}
-
-/* Value card enhancements */
-.value-card {
-  backdrop-filter: blur(10px);
-}
-
-/* Responsive adjustments */
-@media (max-width: 640px) {
-  .process-step {
-    width: 100%;
-    margin-bottom: 2rem;
+  .text-accent {
+    color: #8ba888;
   }
-  
-  .team-member-bio {
-    font-size: 0.875rem;
+  .text-high {
+    color: #1a1a1a;
+  }
+  .text-mid {
+    color: #666666;
+  }
+  .text-low {
+    color: #c0c0c0;
+  }
+
+  .bg-accent {
+    background-color: #8ba888;
+  }
+  .bg-surface {
+    background-color: #ffffff;
+  }
+  .bg-page {
+    background-color: #f9f9f9;
+  }
+
+  .border-accent-light {
+    border-color: rgba(139, 168, 136, 0.2);
+  }
+  .border-accent {
+    border-color: #8ba888;
   }
 }

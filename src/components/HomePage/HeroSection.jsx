@@ -22,7 +22,7 @@ const HeroSection = () => {
         duration: 10,
         repeat: -1,
         ease: "none",
-        transformOrigin: "center center"
+        transformOrigin: "center center",
       });
 
       const tl = gsap.timeline({
@@ -39,48 +39,67 @@ const HeroSection = () => {
       // PHASE 1 — Shrink to SVG Fit
       tl.to(pillWrapperRef.current, {
         width: "9vw",
-        ease: "none"
+        ease: "none",
       });
 
-      tl.to(svgRef.current, {
-        rotation: -360,
-        ease: "none"
-      }, "<");
+      tl.to(
+        svgRef.current,
+        {
+          rotation: -360,
+          ease: "none",
+        },
+        "<",
+      );
 
       // PHASE 2 — Switch AFTER shrink
       tl.to(pillInnerRef.current, {
         backgroundColor: "var(--accent)",
-        duration: 0.15
+        duration: 0.15,
       });
 
-      tl.to(svgGroupRef.current, {
-        stroke: "var(--surface)",
-        duration: 0.15
-      }, "<");
-      
+      tl.to(
+        svgGroupRef.current,
+        {
+          stroke: "var(--surface)",
+          duration: 0.15,
+        },
+        "<",
+      );
+
       // NEW: Change background color when SVG color changes
-      tl.to(sectionRef.current, {
-        backgroundColor: "#f1ebe1",
-        duration: 0.15
-      }, "<");
+      tl.to(
+        sectionRef.current,
+        {
+          backgroundColor: "#f1ebe1",
+          duration: 0.15,
+        },
+        "<",
+      );
 
       // PHASE 3 — Horizontal Scroll
       tl.to(titleTrackRef.current, {
         xPercent: -35,
-        ease: "none"
+        ease: "none",
       });
 
       // PHASE 4 — Smooth Text Reveal
-      tl.to(designRevealRef.current, {
-        clipPath: "inset(0 0% 0 0)",
-        ease: "none"
-      }, "<");
+      tl.to(
+        designRevealRef.current,
+        {
+          clipPath: "inset(0 0% 0 0)",
+          ease: "none",
+        },
+        "<",
+      );
 
-      tl.to(thatRevealRef.current, {
-        clipPath: "inset(0 0% 0 0)",
-        ease: "none"
-      }, "<");
-
+      tl.to(
+        thatRevealRef.current,
+        {
+          clipPath: "inset(0 0% 0 0)",
+          ease: "none",
+        },
+        "<",
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -89,10 +108,9 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen overflow-hidden"
-      style={{ backgroundColor: 'var(--bg)' }}
+      className="relative h-screen overflow-hidden bg-page"
     >
-     <div className="flex h-screen items-center px-6 sm:px-11 md:px-12 lg:pl-20 lg:pr-12">
+      <div className="flex h-screen items-center px-6 sm:px-11 md:px-12 lg:pl-20 lg:pr-12">
         {/* TITLE TRACK */}
         <div
           ref={titleTrackRef}
@@ -100,19 +118,13 @@ const HeroSection = () => {
         >
           {/* DESIGN (layered for reveal) */}
           <div className="relative">
-            <h1 
-              className="hero-heading"
-              style={{ color: 'var(--accent)' }}
-            >
-              Design
-            </h1>
+            <h1 className="hero-heading text-accent">Design</h1>
 
             <h1
               ref={designRevealRef}
-              className="absolute top-0 left-0 hero-heading"
-              style={{ 
-                color: 'var(--text-low)',
-                clipPath: "inset(0 100% 0 0)" 
+              className="absolute top-0 left-0 hero-heading text-low"
+              style={{
+                clipPath: "inset(0 100% 0 0)",
               }}
             >
               Design
@@ -128,7 +140,6 @@ const HeroSection = () => {
             <div
               ref={pillInnerRef}
               className="rounded-[10vw] p-[1vw] flex items-center justify-end bg-[#e7e7e7]"
-             
             >
               <svg
                 ref={svgRef}
@@ -152,22 +163,18 @@ const HeroSection = () => {
 
           {/* THAT MATTER (layered for reveal) */}
           <div className="relative overflow-hidden">
-            <h1 
-              className="hero-heading"
-              style={{ color: 'var(--text-low)' }}
-            >
-              that matter
+            <h1 className="hero-heading text-low">
+              that matters
             </h1>
 
             <h1
               ref={thatRevealRef}
-              className="absolute top-0 left-0 hero-heading"
-              style={{ 
-                color: 'var(--accent)',
-                clipPath: "inset(0 100% 0 0)" 
+              className="absolute top-0 left-0 hero-heading text-accent"
+              style={{
+                clipPath: "inset(0 100% 0 0)",
               }}
             >
-              that matter
+              that matters
             </h1>
           </div>
         </div>

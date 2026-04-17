@@ -59,10 +59,10 @@ const ProgressCard = ({ percentage, description }) => {
   return (
     <div className="bg-surface p-8 rounded-2xl shadow-lg hover-lift">
       {/* TOP GRID */}
-      <div className="grid grid-cols-12 items-center gap-6 mb-6">
+      <div className="grid grid-cols-12 items-center gap-6 mb-2">
         {/* BIG NUMBER */}
         <div className="col-span-7">
-          <div className="stat-number text-high shrink-0">
+          <div className="card-title text-high shrink-0">
             <span>Impact</span>
           </div>
         </div>
@@ -80,7 +80,7 @@ const ProgressCard = ({ percentage, description }) => {
           </div>
 
           {/* SMALL % */}
-          <div className="text-lg font-medium text-mid whitespace-nowrap">
+          <div className="card-title font-medium text-mid whitespace-nowrap">
             <span ref={numberRef}>0</span>
             <span className="ml-1">%</span>
           </div>
@@ -119,10 +119,10 @@ const UsersCard = ({ count, suffix, description, images }) => {
   return (
     <div className="bg-surface p-8 rounded-2xl shadow-lg hover-lift">
       {/* TOP GRID */}
-      <div className="grid grid-cols-12 items-center gap-6 mb-6">
+      <div className="grid grid-cols-12 items-center gap-6 mb-2">
         {/* LEFT SIDE - BIG NUMBER */}
         <div className="col-span-7">
-          <div className="stat-number text-high">
+          <div className="card-title text-high">
             <span ref={countRef}>0</span>
             <span className="ml-1">{suffix}</span>
           </div>
@@ -173,10 +173,10 @@ const StatsCard = ({ count, suffix, description, icon }) => {
   return (
     <div className="bg-surface p-8 rounded-2xl shadow-lg hover-lift">
       {/* TOP GRID */}
-      <div className="grid grid-cols-12 items-center gap-6 mb-6">
+      <div className="grid grid-cols-12 items-center gap-6 mb-2">
         {/* LEFT SIDE - BIG NUMBER */}
         <div className="col-span-7">
-          <div className="stat-number text-high">
+          <div className="card-title text-high">
             <span ref={countRef}>0</span>
             <span className="ml-1">{suffix}</span>
           </div>
