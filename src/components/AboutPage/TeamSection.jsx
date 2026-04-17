@@ -2,8 +2,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import techLeadImage from "../../assets/taniya.png";
-import designerImage from "../../assets/satya.jpg";
+// import techLeadImage from "../../assets/taniya.png";
+// import designerImage from "../../assets/satya.jpg";
+import ceoImage from "../../assets/bikesh.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,9 +57,9 @@ const TeamSection = () => {
   const team = [
     {
       name: "Bikesh Kumar",
-      role: "Creative Director & Co-founder",
+      role: "CEO & CTO",
       image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400",
+        ceoImage,
       bio: "Bikesh has over 12 years of experience leading creative teams and crafting brand identities for global companies.",
     },
     {
