@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Container from "../components/ui/Container";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -85,10 +85,10 @@ const StatsSection = () => {
               ref={el => statsRef.current[index] = el}
               className="text-center opacity-0"
             >
-              <div className="stat-number text-accent mb-2">
+              <div className="card-title text-accent mb-2">
                 {stat.value}{stat.suffix}
               </div>
-              <div className="stat-label text-mid">{stat.label}</div>
+              <div className="subheading text-mid">{stat.label}</div>
             </div>
           ))}
         </div>

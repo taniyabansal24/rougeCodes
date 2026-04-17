@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Container from "../ui/Container";
+
 
 // Register ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -112,7 +112,7 @@ const VisionSection = () => {
       ref={sectionRef}
       className="relative h-screen overflow-hidden bg-surface"
     >
-      <Container>
+      <div className="container mx-auto px-4">
         <div
           ref={containerRef}
           className="relative z-10 container mx-auto px-4 text-center mt-20 md:mt-36"
@@ -214,7 +214,7 @@ const VisionSection = () => {
             />
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 };

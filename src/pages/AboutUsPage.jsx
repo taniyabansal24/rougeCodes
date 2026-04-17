@@ -7,6 +7,7 @@ import TeamSection from "../components/AboutPage/TeamSection";
 import StatsSection from "../components/AboutPage/StatsSection";
 import ProcessSection from "../components/AboutPage/ProcessSection";
 import CallToAction from "../Layout/CallToAction";
+import CTASection from "../Layout/CTASection";
 
 const AboutUsPage = () => {
   return (
@@ -15,20 +16,18 @@ const AboutUsPage = () => {
       <div className="section">
         <StorySection />
       </div>
-      <div className="section bg-surface">
-        <ValuesSection />
-      </div>
       <div className="section-sm">
         <StatsSection />
       </div>
       <div className="section bg-page">
         <ProcessSection />
       </div>
-      <div className="section bg-surface">
+      <div className=" bg-surface">
         <TeamSection />
       </div>
       <div className="">
-        <CallToAction />
+        {/* <CallToAction /> */}
+        <CTASection/>
       </div>
     </div>
   );
