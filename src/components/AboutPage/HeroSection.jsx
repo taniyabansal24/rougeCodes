@@ -24,7 +24,7 @@ const HeroSection = () => {
         duration: 12,
         repeat: -1,
         ease: "none",
-        transformOrigin: "center center"
+        transformOrigin: "center center",
       });
 
       const tl = gsap.timeline({
@@ -41,49 +41,65 @@ const HeroSection = () => {
       // PHASE 1 — Shrink to SVG Fit
       tl.to(pillWrapperRef.current, {
         width: "9vw",
-        ease: "none"
+        ease: "none",
       });
 
-      tl.to(svgRef.current, {
-        rotation: -360,
-        ease: "none"
-      }, "<");
+      tl.to(
+        svgRef.current,
+        {
+          rotation: -360,
+          ease: "none",
+        },
+        "<",
+      );
 
       // PHASE 2 — Switch AFTER shrink
       tl.to(pillInnerRef.current, {
         backgroundColor: "var(--accent)",
-        duration: 0.15
+        duration: 0.15,
       });
 
-      tl.to(svgGroupRef.current, {
-        stroke: "var(--surface)",
-        duration: 0.15
-      }, "<");
+      tl.to(
+        svgGroupRef.current,
+        {
+          stroke: "var(--surface)",
+          duration: 0.15,
+        },
+        "<",
+      );
 
       // PHASE 3 — Horizontal Scroll
       tl.to(titleTrackRef.current, {
         xPercent: -50,
-        ease: "none"
+        ease: "none",
       });
 
       // PHASE 4 — Smooth Text Reveal
-      tl.to(aboutRevealRef.current, {
-        clipPath: "inset(0 0% 0 0)",
-        ease: "none"
-      }, "<");
-
-      tl.to(usRevealRef.current, {
-        clipPath: "inset(0 0% 0 0)",
-        ease: "none"
-      }, "<");
-
-      // PHASE 5 — Subtitle fade in at the end
-      tl.fromTo(subtitleRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5 },
-        ">"
+      tl.to(
+        aboutRevealRef.current,
+        {
+          clipPath: "inset(0 0% 0 0)",
+          ease: "none",
+        },
+        "<",
       );
 
+      tl.to(
+        usRevealRef.current,
+        {
+          clipPath: "inset(0 0% 0 0)",
+          ease: "none",
+        },
+        "<",
+      );
+
+      // PHASE 5 — Subtitle fade in at the end
+      tl.fromTo(
+        subtitleRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5 },
+        ">",
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -93,7 +109,7 @@ const HeroSection = () => {
     <section
       ref={sectionRef}
       className="relative h-screen overflow-hidden"
-      style={{ backgroundColor: 'var(--bg)' }}
+      style={{ backgroundColor: "var(--bg)" }}
     >
       <div className="flex h-screen items-center px-6 sm:px-11 md:px-12 lg:pl-20 lg:pr-12">
         {/* TITLE TRACK */}
@@ -103,19 +119,16 @@ const HeroSection = () => {
         >
           {/* ABOUT (layered for reveal) */}
           <div className="relative">
-            <h1 
-              className="hero-heading"
-              style={{ color: 'var(--accent)' }}
-            >
+            <h1 className="hero-heading" style={{ color: "var(--accent)" }}>
               About Us
             </h1>
 
             <h1
               ref={aboutRevealRef}
               className="absolute top-0 left-0 hero-heading"
-              style={{ 
-                color: 'var(--text-low)',
-                clipPath: "inset(0 100% 0 0)" 
+              style={{
+                color: "var(--text-low)",
+                clipPath: "inset(0 100% 0 0)",
               }}
             >
               About Us
@@ -154,42 +167,32 @@ const HeroSection = () => {
 
           {/* WHO WE ARE (layered for reveal) */}
           <div className="relative overflow-hidden">
-            <h1 
-              className="hero-heading"
-              style={{ color: 'var(--text-low)' }}
-            >
-              Who We Are 
+            <h1 className="hero-heading" style={{ color: "var(--text-low)" }}>
+              Who We Are
             </h1>
 
             <h1
               ref={usRevealRef}
               className="absolute top-0 left-0 hero-heading"
-              style={{ 
-                color: 'var(--accent)',
-                clipPath: "inset(0 100% 0 0)" 
+              style={{
+                color: "var(--accent)",
+                clipPath: "inset(0 100% 0 0)",
               }}
             >
-              Who We Are 
+              Who We Are
             </h1>
           </div>
         </div>
       </div>
 
       {/* Subtitle that appears at the end of scroll - ENHANCED VERSION */}
-      <div 
+      <div
         ref={subtitleRef}
-        className="absolute bottom-20 left-1/2 -translate-x-1/2 text-center opacity-0 w-full px-4"
+        className="absolute bottom-20 right-20 text-right opacity-0"
       >
-        <p className="text-body text-mid max-w-3xl mx-auto">
-          We're a collective of designers, developers, and strategists 
-          dedicated to creating meaningful digital experiences. 
-          <span className="block mt-4 text-accent font-semibold">
-            We believe in the power of thoughtful design to transform businesses 
-            and connect people in meaningful ways.
-          </span>
-          <span className="block mt-3 text-sm opacity-80">
-            Based in NYC • Working worldwide • Est. 2020
-          </span>
+        <p className="text-body text-mid max-w-md px-4">
+          We're a collective of designers, developers, and strategists dedicated
+          to creating meaningful digital experiences.
         </p>
       </div>
     </section>
