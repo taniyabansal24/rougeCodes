@@ -5,6 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import techLeadImage from "../../assets/taniya.png";
 // import designerImage from "../../assets/satya.jpg";
 import ceoImage from "../../assets/bikesh.png";
+import sarthakImage from "../../assets/sarthak.png";
+// import sarthakImage from "../../assets/sarthak1.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,13 +62,13 @@ const TeamSection = () => {
       role: "CEO & CTO",
       image:
         ceoImage,
-      bio: "Bikesh has over 12 years of experience leading creative teams and crafting brand identities for global companies.",
+      bio: "Bikesh has over years of experience leading creative teams and crafting brand identities for global companies.",
     },
     {
       name: "Sarthak Arora",
       role: "Technical Director & Co-founder",
       image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400",
+        sarthakImage,
       bio: "Sarthak specializes in scalable architectures and emerging technologies, ensuring our solutions are future-ready.",
     },
     // {
@@ -103,7 +105,7 @@ const TeamSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {team.map((member, index) => (
             <div
               key={index}
