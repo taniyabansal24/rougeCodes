@@ -32,7 +32,7 @@ const CTASection = () => {
         {
           scale: 0.75,
           borderRadius: "2rem",
-          opacity: 0.6,
+          opacity: 1,
         },
         {
           scale: 1,

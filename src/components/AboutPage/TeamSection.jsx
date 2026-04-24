@@ -93,7 +93,7 @@ const TeamSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="relative py-16">
+    <section ref={sectionRef} className="relative">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="badge mb-3 inline-block">Our Team</span>

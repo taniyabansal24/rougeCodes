@@ -4,6 +4,7 @@ import Footer from "./Layout/Footer";
 import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactUsPage from "./pages/ContactUsPage";
+import ServicePage from "./pages/ServicePage";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/contact" element={<ContactUsPage />} />
+      </Routes>
+      <Routes>
+        <Route path="/services" element={<ServicePage />} />
       </Routes>
 
       <Footer />

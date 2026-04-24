@@ -26,13 +26,57 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
+  // Handle hash navigation on page load - only for careers
+  useEffect(() => {
+    if (location.hash === "#careers") {
+      // Small delay to ensure page has loaded and scrolled to top first
+      setTimeout(() => {
+        const section = document.getElementById("careers");
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    }
+  }, [location]);
+
+  // Reset scroll to top when navigating between pages (except for careers on services page)
+  useEffect(() => {
+    const handleRouteChange = () => {
+      // Only auto-scroll to top if it's not the careers hash navigation
+      if (!location.hash) {
+        window.scrollTo(0, 0);
+      }
+    };
+    
+    // Small delay to ensure navigation is complete
+    setTimeout(handleRouteChange, 100);
+  }, [location.pathname, location.hash]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const handleNavClick = (path) => {
     setIsMenuOpen(false);
+    // Clear any hash when navigating to other pages
     navigate(path);
+    // Scroll to top immediately
+    window.scrollTo(0, 0);
+  };
+
+  // Handle Careers click - similar to your handleJoinUsClick
+  const handleCareerClick = () => {
+    setIsMenuOpen(false);
+    if (window.location.pathname === "/services") {
+      // If already on services page, just scroll to careers section
+      const section = document.getElementById("careers");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Navigate to services page and scroll to careers section
+      navigate("/services#careers");
+    }
   };
 
   const closeMenuOnOutsideClick = (e) => {
@@ -46,11 +90,11 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { path: "/", label: "Home" },
-    { path: "/about", label: "About" },
-    { path: "/services", label: "Services" },
-    { path: "/careers", label: "Careers" },
-    { path: "/contact", label: "Contact" },
+    { path: "/", label: "Home", onClick: () => handleNavClick("/") },
+    { path: "/about", label: "About", onClick: () => handleNavClick("/about") },
+    { path: "/services", label: "Services", onClick: () => handleNavClick("/services") },
+    { path: "/careers", label: "Careers", onClick: handleCareerClick },
+    { path: "/contact", label: "Contact", onClick: () => handleNavClick("/contact") },
   ];
 
   return (
@@ -85,7 +129,7 @@ const Navbar = () => {
           {navItems.slice(1).map((item) => (
             <button
               key={item.path}
-              onClick={() => handleNavClick(item.path)}
+              onClick={item.onClick}
               className={`relative px-2 py-1 nav-link group ${
                 isActive(item.path)
                   ? "text-high"
@@ -145,8 +189,7 @@ const Navbar = () => {
             {navItems.map((item, index) => (
               <button
                 key={item.path}
-                onClick={() => handleNavClick(item.path)}
-                // Updated to use consistent font weights
+                onClick={item.onClick}
                 className={`text-3xl md:text-4xl font-light transition-all duration-300 hover:scale-110 relative group ${
                   isActive(item.path) ? "text-accent" : "text-white"
                 }`}

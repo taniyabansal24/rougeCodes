@@ -1,3 +1,4 @@
+// components/AboutPage/HeroSection.jsx
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,15 +12,16 @@ const HeroSection = () => {
   const svgRef = useRef(null);
   const svgGroupRef = useRef(null);
   const titleTrackRef = useRef(null);
-  const designRevealRef = useRef(null);
-  const thatRevealRef = useRef(null);
+  const aboutRevealRef = useRef(null);
+  const usRevealRef = useRef(null);
+  const subtitleRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Continuous SVG rotation
       gsap.to(svgGroupRef.current, {
         rotation: 360,
-        duration: 10,
+        duration: 12,
         repeat: -1,
         ease: "none",
         transformOrigin: "center center",
@@ -66,25 +68,15 @@ const HeroSection = () => {
         "<",
       );
 
-      // NEW: Change background color when SVG color changes
-      tl.to(
-        sectionRef.current,
-        {
-          backgroundColor: "#f1ebe1",
-          duration: 0.15,
-        },
-        "<",
-      );
-
       // PHASE 3 — Horizontal Scroll
       tl.to(titleTrackRef.current, {
-        xPercent: -35,
+        xPercent: -50,
         ease: "none",
       });
 
       // PHASE 4 — Smooth Text Reveal
       tl.to(
-        designRevealRef.current,
+        aboutRevealRef.current,
         {
           clipPath: "inset(0 0% 0 0)",
           ease: "none",
@@ -93,12 +85,20 @@ const HeroSection = () => {
       );
 
       tl.to(
-        thatRevealRef.current,
+        usRevealRef.current,
         {
           clipPath: "inset(0 0% 0 0)",
           ease: "none",
         },
         "<",
+      );
+
+      // PHASE 5 — Subtitle fade in at the end
+      tl.fromTo(
+        subtitleRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5 },
+        ">",
       );
     }, sectionRef);
 
@@ -108,7 +108,8 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen overflow-hidden bg-page"
+      className="relative h-screen overflow-hidden"
+      style={{ backgroundColor: "var(--bg)" }}
     >
       <div className="flex h-screen items-center px-6 sm:px-11 md:px-12 lg:pl-20 lg:pr-12">
         {/* TITLE TRACK */}
@@ -116,18 +117,21 @@ const HeroSection = () => {
           ref={titleTrackRef}
           className="flex items-end gap-4 sm:gap-8 md:gap-11 lg:gap-16 whitespace-nowrap will-change-transform"
         >
-          {/* DESIGN (layered for reveal) */}
+          {/* ABOUT (layered for reveal) */}
           <div className="relative">
-            <h1 className="hero-heading text-darkAccent">Design</h1>
+            <h1 className="hero-heading" style={{ color: "var(--darkAccent)" }}>
+              Services
+            </h1>
 
             <h1
-              ref={designRevealRef}
-              className="absolute top-0 left-0 hero-heading text-low"
+              ref={aboutRevealRef}
+              className="absolute top-0 left-0 hero-heading"
               style={{
+                color: "var(--text-low)",
                 clipPath: "inset(0 100% 0 0)",
               }}
             >
-              Design
+              Services
             </h1>
           </div>
 
@@ -148,7 +152,7 @@ const HeroSection = () => {
               >
                 <g
                   ref={svgGroupRef}
-                  stroke="black"
+                  stroke="black" // Changed from --text-high to --accent
                   strokeWidth="10"
                   strokeLinecap="round"
                 >
@@ -161,23 +165,35 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* THAT MATTER (layered for reveal) */}
+          {/* WHO WE ARE (layered for reveal) */}
           <div className="relative overflow-hidden">
-            <h1 className="hero-heading text-low">
-              that matters
+            <h1 className="hero-heading" style={{ color: "var(--text-low)" }}>
+              We Offer
             </h1>
 
             <h1
-              ref={thatRevealRef}
-              className="absolute top-0 left-0 hero-heading text-darkAccent"
+              ref={usRevealRef}
+              className="absolute top-0 left-0 hero-heading"
               style={{
+                color: "var(--darkAccent)",
                 clipPath: "inset(0 100% 0 0)",
               }}
             >
-              that matters
+              We Offer
             </h1>
           </div>
         </div>
+      </div>
+
+      {/* Subtitle that appears at the end of scroll - ENHANCED VERSION */}
+      <div
+        ref={subtitleRef}
+        className="absolute bottom-20 right-20 text-right opacity-0"
+      >
+        <p className="text-body text-mid max-w-md px-4">
+           End-to-end digital solutions including web development, mobile apps, 
+          UX/UI design, and strategic consulting for modern businesses.
+        </p>
       </div>
     </section>
   );

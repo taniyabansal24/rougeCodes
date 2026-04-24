@@ -17,6 +17,7 @@
   --bg: #f9f9f9;
   --surface: #ffffff;
   --accent: #8ba888;
+  --darkAccent: #44624a;
   --text-high: #1a1a1a;
   --text-mid: #666666;
   --text-low: #c0c0c0;
@@ -126,21 +127,6 @@
     font-family: "Inter Tight", sans-serif;
   }
 
-
-
-  .text-subtitle,
-  .text-subtitle-accent,
-  .nav-link,
-  .btn-text,
-  .footer-heading,
-  .footer-link,
-  .footer-contact,
-  .footer-copyright,
-  .stat-label {
-    @apply text-base;
-    font-family: "Inter Tight", sans-serif;
-  }
-
   /* =================================
      STATS NUMBERS
      Used in: counters
@@ -157,18 +143,6 @@
 
   .section-sm {
     @apply py-16 md:py-20;
-  }
-
-  .subsection {
-    @apply py-16 md:py-20;
-  }
-
-  .subsection-sm {
-    @apply py-12 md:py-16;
-  }
-
-  .container-padding {
-    @apply px-4 md:px-6 lg:px-8;
   }
 
   /* =================================
@@ -193,6 +167,9 @@
 
   .text-accent {
     color: #8ba888;
+  }
+  .text-darkAccent{
+    color: #44624a;
   }
   .text-high {
     color: #1a1a1a;

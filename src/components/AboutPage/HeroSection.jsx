@@ -55,7 +55,7 @@ const HeroSection = () => {
 
       // PHASE 2 — Switch AFTER shrink
       tl.to(pillInnerRef.current, {
-        backgroundColor: "var(--accent)",
+        backgroundColor: "var(--darkAccent)",
         duration: 0.15,
       });
 
@@ -119,7 +119,7 @@ const HeroSection = () => {
         >
           {/* ABOUT (layered for reveal) */}
           <div className="relative">
-            <h1 className="hero-heading" style={{ color: "var(--accent)" }}>
+            <h1 className="hero-heading" style={{ color: "var(--darkAccent)" }}>
               About Us
             </h1>
 
@@ -175,7 +175,7 @@ const HeroSection = () => {
               ref={usRevealRef}
               className="absolute top-0 left-0 hero-heading"
               style={{
-                color: "var(--accent)",
+                color: "var(--darkAccent)",
                 clipPath: "inset(0 100% 0 0)",
               }}
             >

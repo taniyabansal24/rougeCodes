@@ -307,7 +307,7 @@ const Services = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#f9f9f9" }}>
       {/* Header Section */}
-      <div className="container mx-auto px-4 py-20 max-w-3xl">
+      <div className="container mx-auto px-4 pb-20 max-w-3xl">
         <div className="text-center">
           <span className="badge text-accent mb-3 inline-block">
             What We Do

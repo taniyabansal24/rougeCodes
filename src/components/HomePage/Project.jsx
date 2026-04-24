@@ -74,7 +74,7 @@ const Project = () => {
     },
     {
       id: 2,
-      title: "MyStudio",
+      title: "Cafe-Flow",
       category: "Branding, Website, Art Direction",
       icon: "grid",
       image:
