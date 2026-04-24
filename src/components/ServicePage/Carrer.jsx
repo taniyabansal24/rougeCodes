@@ -188,7 +188,7 @@ const Career = () => {
     <div className="bg-page">
       {/* Header Section */}
       <motion.div
-        className="container mx-auto px-4 pt-12 pb-8 md:pt-16 md:pb-12"
+        className="container mx-auto px-4 "
         variants={headerVariants}
         initial="hidden"
         animate="visible"
