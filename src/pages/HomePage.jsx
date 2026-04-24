@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <div>
       <HeroSection />
-      <div className="section">
+      <div className="">
         <VisionSection />
       </div>
       <div className="section">
