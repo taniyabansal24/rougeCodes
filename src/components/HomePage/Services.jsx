@@ -1,3 +1,7 @@
+import development from "../../assets/development.jpg";
+import Branding from "../../assets/Branding.jpg";
+import Startups from "../../assets/startups.jpg";
+import AITools from "../../assets/AITools.jpg";
 import React, { useEffect, useRef, useCallback } from "react";
 
 const Services = () => {
@@ -214,6 +218,7 @@ const Services = () => {
         "Cloud Architecture",
       ],
       color: "#8ba888",
+      image: development,
     },
     {
       title: "Branding",
@@ -243,6 +248,7 @@ const Services = () => {
         "Prototyping",
       ],
       color: "#8ba888",
+      image: Branding,
     },
     {
       title: "Startup MVP",
@@ -272,6 +278,7 @@ const Services = () => {
         "Iterative Design",
       ],
       color: "#8ba888",
+      image: Startups,
     },
     {
       title: "AI Tools",
@@ -301,6 +308,7 @@ const Services = () => {
         "AI Integration",
       ],
       color: "#8ba888",
+      image: AITools,
     },
   ];
 
@@ -412,55 +420,15 @@ const Services = () => {
                   </div>
                 </div>
 
-                {/* Right side - Visual */}
-                <div
-                  className="relative h-64 md:h-auto overflow-hidden"
-                  style={{ backgroundColor: "rgba(139, 168, 136, 0.05)" }}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center p-8">
-                    <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
-                      {service.features.slice(0, 4).map((_, idx) => (
-                        <div
-                          key={idx}
-                          className="aspect-square rounded-lg"
-                          style={{
-                            backgroundColor: "#ffffff",
-                            boxShadow: "0 5px 15px -3px rgba(0, 0, 0, 0.1)",
-                            border: "1px solid rgba(0, 0, 0, 0.02)",
-                          }}
-                        >
-                          <div className="w-full h-full flex items-center justify-center">
-                            <div
-                              className="w-8 h-8 rounded-full"
-                              style={{
-                                backgroundColor:
-                                  idx === 0
-                                    ? "#8ba888"
-                                    : idx === 1
-                                      ? "rgba(139, 168, 136, 0.6)"
-                                      : idx === 2
-                                        ? "rgba(139, 168, 136, 0.3)"
-                                        : "rgba(139, 168, 136, 0.1)",
-                              }}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Decorative pattern */}
-                  <svg
-                    className="absolute bottom-0 left-0 w-full"
-                    viewBox="0 0 400 100"
-                    preserveAspectRatio="none"
-                    style={{ opacity: 0.1 }}
-                  >
-                    <path
-                      d="M0,50 Q100,0 200,50 T400,50 L400,100 L0,100 Z"
-                      fill="#8ba888"
-                    />
-                  </svg>
+                {/* Right side - Image */}
+                <div className="relative h-64 md:h-auto overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                  {/* Overlay gradient for better text contrast if needed */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                 </div>
               </div>
             </li>

@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import trustyMoney from "../../assets/trustyMoney.png";
+import cafeFlow from "../../assets/cafeFlow.png";
+
 
 const GridIcon = ({ isActive }) => (
   <svg
@@ -67,31 +70,23 @@ const Project = () => {
       title: "Trusty Money",
       category: "Branding, Website",
       icon: "grid",
-      image:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64c00723ca0fe86a512e2e40_Barrett%20Plastic%20Surgery.png",
-      imageSrcset:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64c00723ca0fe86a512e2e40_Barrett%20Plastic%20Surgery-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64c00723ca0fe86a512e2e40_Barrett%20Plastic%20Surgery-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64c00723ca0fe86a512e2e40_Barrett%20Plastic%20Surgery.png 848w",
+      image: trustyMoney,
+
     },
     {
       id: 2,
       title: "Cafe-Flow",
       category: "Branding, Website, Art Direction",
       icon: "grid",
-      image:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64c007006bb62d07dc236e72_MyStudio.png",
-      imageSrcset:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64c007006bb62d07dc236e72_MyStudio-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64c007006bb62d07dc236e72_MyStudio-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64c007006bb62d07dc236e72_MyStudio.png 848w",
+      image: cafeFlow,
     },
-    {
-      id: 3,
-      title: "Instead",
-      category: "Creative direction, UI/UX",
-      icon: "grid",
-      image:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64a41e6ef1b58a94515742e2_Instead%20portfolio.png",
-      imageSrcset:
-        "https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64a41e6ef1b58a94515742e2_Instead%20portfolio-p-500.png 500w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64a41e6ef1b58a94515742e2_Instead%20portfolio-p-800.png 800w, https://cdn.prod.website-files.com/638c25cc9bf138cb48dca856/64a41e6ef1b58a94515742e2_Instead%20portfolio.png 848w",
-    },
+    // {
+    //   id: 3,
+    //   title: "Instead",
+    //   category: "Creative direction, UI/UX",
+    //   icon: "grid",
+    //   image: trusty, 
+    // },
     // {
     //   id: 4,
     //   title: "Js for Webflow",
@@ -307,7 +302,7 @@ const Project = () => {
       : "opacity-0 scale-90 translate-x-12"
   }`}
                 >
-                  <div className="relative w-full h-full overflow-hidden rounded-xl shadow-2xl">
+                  <div className="relative w-full h-full overflow-hidden rounded-xl ">
                     <picture>
                       <source srcSet={project.imageSrcset} type="image/png" />
                       <img
