@@ -35,15 +35,15 @@ const VisionSection = () => {
         image2: { x: 280, y: -200 },   // Top-right
         image3: { x: 0, y: 280 }        // Bottom-center
       };
-      
+
       // Apply final positions directly
       gsap.set(image1Ref.current, { x: finalPositions.image1.x, y: finalPositions.image1.y });
       gsap.set(image2Ref.current, { x: finalPositions.image2.x, y: finalPositions.image2.y });
       gsap.set(image3Ref.current, { x: finalPositions.image3.x, y: finalPositions.image3.y });
-      
+
       return finalPositions;
     };
-    
+
     const finalPositions = setFinalPositions();
 
     // Set initial text state
@@ -75,31 +75,31 @@ const VisionSection = () => {
       { x: finalPositions.image1.x, y: finalPositions.image1.y, scale: 0.8, duration: 1, ease: "power2.out" },
       0
     )
-    .fromTo(
-      image2Ref.current,
-      { x: 0, y: 0, scale: 1 },
-      { x: finalPositions.image2.x, y: finalPositions.image2.y, scale: 0.8, duration: 1, ease: "power2.out" },
-      0
-    )
-    .fromTo(
-      image3Ref.current,
-      { x: 0, y: 0, scale: 1 },
-      { x: finalPositions.image3.x, y: finalPositions.image3.y, scale: 0.8, duration: 1, ease: "power2.out" },
-      0
-    )
-    // Text reveals
-    .to(
-      allTextElements,
-      {
-        scale: 1,
-        opacity: 1,
-        y: 0,
-        stagger: 0.15,
-        duration: 1.2,
-        ease: "power3.out",
-      },
-      0.8
-    );
+      .fromTo(
+        image2Ref.current,
+        { x: 0, y: 0, scale: 1 },
+        { x: finalPositions.image2.x, y: finalPositions.image2.y, scale: 0.8, duration: 1, ease: "power2.out" },
+        0
+      )
+      .fromTo(
+        image3Ref.current,
+        { x: 0, y: 0, scale: 1 },
+        { x: finalPositions.image3.x, y: finalPositions.image3.y, scale: 0.8, duration: 1, ease: "power2.out" },
+        0
+      )
+      // Text reveals
+      .to(
+        allTextElements,
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          stagger: 0.15,
+          duration: 1.2,
+          ease: "power3.out",
+        },
+        0.8
+      );
 
     // Cleanup
     return () => {

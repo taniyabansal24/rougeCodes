@@ -2,30 +2,25 @@ import React from "react";
 import HeroSection from "../components/HomePage/HeroSection";
 import VisionSection from "../components/HomePage/VisionSection";
 import Project from "../components/HomePage/Project";
+import Process from "../components/HomePage/Process";
 import Services from "../components/HomePage/Services";
-import CallToAction from "../Layout/CallToAction";
 import WhyUs from "../components/HomePage/WhyUs";
+import CallToAction from "../Layout/CallToAction";
 
 const HomePage = () => {
   return (
-    <div>
+    <main className="w-full">
       <HeroSection />
-      <div className="">
-        <VisionSection />
-      </div>
-      <div className="section">
+      <VisionSection />
+
+      <div className="pb-24">
         <Project />
       </div>
-      <div className="pt-20 md:pt-24">
-        <Services />
-      </div>
-      <div className="">
-        <WhyUs />
-      </div>
-      <div className="">
-        <CallToAction />
-      </div>
-    </div>
+      <Process />
+      <Services />
+      <WhyUs />
+      <CallToAction />
+    </main>
   );
 };
 

@@ -43,8 +43,11 @@ const CallToAction = () => {
   return (
     <section 
       ref={sectionRef}
-      className="cta-section relative py-20 md:py-24 overflow-hidden"
-      style={{ backgroundColor: '#f9f9f9' }}
+      className="section cta-section relative overflow-hidden"
+      style={{
+        backgroundColor: '#f9f9f9',
+        paddingBlock: "var(--section-y)",
+      }}
     >
       {/* Animated background shapes */}
       <div className="absolute inset-0 pointer-events-none">

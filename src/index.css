@@ -14,6 +14,7 @@
 }
 
 :root {
+  --section-y: clamp(5rem, 3.2rem + 6vw, 8.5rem);
   --bg: #f9f9f9;
   --surface: #ffffff;
   --accent: #8ba888;
@@ -138,7 +139,7 @@
   ================================= */
 
   .section {
-    @apply py-20 md:py-24;
+    padding-block: var(--section-y);
   }
 
   .section-sm {

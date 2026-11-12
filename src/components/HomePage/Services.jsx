@@ -313,16 +313,23 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#f9f9f9" }}>
+    <section
+      className="section relative"
+      style={{
+        backgroundColor: "#f9f9f9",
+        paddingBlock: "var(--section-y)",
+      }}
+      aria-labelledby="services-title"
+    >
       {/* Header Section */}
-      <div className="container mx-auto px-4 pb-20 max-w-3xl">
+      <div className="container mx-auto px-4 mb-14 md:mb-18 max-w-3xl">
         <div className="text-center">
           <span className="badge text-accent mb-3 inline-block">
             What We Do
           </span>
-          <h1 className="section-heading text-high mb-6">
+          <h2 id="services-title" className="section-heading text-high mb-6">
             Services we provide
-          </h1>
+          </h2>
           <p className="subheading text-mid">
             Scroll down to explore our expertise
           </p>
@@ -330,7 +337,7 @@ const Services = () => {
       </div>
 
       {/* Stacking Cards Container */}
-      <div className="container mx-auto px-4 max-w-6xl mb-24">
+      <div className="container mx-auto px-4 max-w-6xl">
         <ul
           ref={stackRef}
           className="stack-cards relative"
@@ -483,7 +490,7 @@ const Services = () => {
           transform: translateY(2px);
         }
       `}</style>
-    </div>
+    </section>
   );
 };
 

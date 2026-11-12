@@ -210,12 +210,12 @@ const Project = () => {
   };
 
   return (
-    <div className="w-full">
+    <section className="section w-full bg-white" aria-labelledby="projects-title">
       {/* Header Section - Following system pattern */}
-      <div className="border-b border-gray-200">
-        <div className="container mx-auto px-4 py-20 max-w-3xl text-center">
+      <div className="border-b border-gray-200 pb-14 md:pb-18">
+        <div className="container mx-auto px-4 max-w-3xl text-center">
           <span className="badge mb-3 inline-block">Our Work</span>
-          <h2 className="section-heading text-high mb-6">Selected Projects</h2>
+          <h2 id="projects-title" className="section-heading text-high mb-6">Selected Projects</h2>
           <p className="subheading text-mid">
             Explore some of the products and brands we’ve helped build.
           </p>
@@ -319,7 +319,7 @@ const Project = () => {
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
