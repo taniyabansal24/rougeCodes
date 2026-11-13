@@ -4,7 +4,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HeroSection = () => {
+const HeroSection = ({
+  bgImage = "/i 1.png",
+  variantNumber = 1,
+  variantName = "Prismatic Wave",
+  bgOpacity = 1,
+}) => {
   const sectionRef = useRef(null);
   const pillWrapperRef = useRef(null);
   const pillInnerRef = useRef(null);
@@ -66,16 +71,6 @@ const HeroSection = () => {
         "<",
       );
 
-      // NEW: Change background color when SVG color changes
-      tl.to(
-        sectionRef.current,
-        {
-          backgroundColor: "#f1ebe1",
-          duration: 0.15,
-        },
-        "<",
-      );
-
       // PHASE 3 — Horizontal Scroll
       tl.to(titleTrackRef.current, {
         xPercent: -35,
@@ -108,9 +103,29 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
+      id={`hero-variant-${variantNumber}`}
       className="relative h-screen overflow-hidden bg-page"
     >
-      <div className="flex h-screen items-center px-6 sm:px-11 md:px-12 lg:pl-20 lg:pr-12">
+      {/* Background Image */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <img
+          src={bgImage}
+          alt={`Hero Background Variant ${variantNumber}`}
+          className="h-full w-full object-cover object-center"
+          style={{ opacity: bgOpacity }}
+          loading="eager"
+        />
+      </div>
+
+      {/* Variant Indicator Pill for Showcase */}
+      <div className="absolute top-24 left-6 sm:left-11 md:left-12 lg:left-20 z-20 pointer-events-none">
+        <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/85 px-3.5 py-1.5 font-mono text-[0.72rem] uppercase tracking-wider text-[#1a1a1a] shadow-xs backdrop-blur-md">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#357f20]" />
+          Variant 0{variantNumber} • {variantName}
+        </span>
+      </div>
+
+      <div className="relative z-10 flex h-screen items-center px-6 sm:px-11 md:px-12 lg:pl-20 lg:pr-12">
         {/* TITLE TRACK */}
         <div
           ref={titleTrackRef}
@@ -182,5 +197,54 @@ const HeroSection = () => {
     </section>
   );
 };
+
+export const HeroSection2 = (props) => (
+  <HeroSection
+    bgImage="/i 2.png"
+    variantNumber={2}
+    variantName="Frosted Ribbed Glass"
+    {...props}
+  />
+);
+
+export const HeroSection3 = (props) => (
+  <HeroSection
+    bgImage="/i 3.png"
+    variantNumber={3}
+    variantName="Soft Liquid Ripple"
+    bgOpacity={0.23}
+    {...props}
+  />
+);
+
+export const HeroSection4 = (props) => (
+  <HeroSection
+    bgImage="/i 4.png"
+    variantNumber={4}
+    variantName="Sage Ribbon Wave"
+    bgOpacity={0.18}
+    {...props}
+  />
+);
+
+export const HeroSection5 = (props) => (
+  <HeroSection
+    bgImage="/i 5.png"
+    variantNumber={5}
+    variantName="Geometric Glass Planes"
+    bgOpacity={0.18}
+    {...props}
+  />
+);
+
+export const HeroSection6 = (props) => (
+  <HeroSection
+    bgImage="/i 6.png"
+    variantNumber={6}
+    variantName="Architectural Grid Blocks"
+    bgOpacity={0.35}
+    {...props}
+  />
+);
 
 export default HeroSection;
