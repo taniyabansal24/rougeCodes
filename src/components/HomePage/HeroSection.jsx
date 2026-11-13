@@ -168,10 +168,7 @@ const HeroSection = ({
 
           {/* THAT MATTER (layered for reveal) */}
           <div className="relative overflow-hidden">
-            <h1
-              className="hero-heading text-[#f1ebe1]"
-              style={{ color: "#f1ebe1" }}
-            >
+            <h1 className="hero-heading text-low">
               that matters
             </h1>
 
