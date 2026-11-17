@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Container from "../components/ui/Container";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,17 +14,17 @@ const CTASection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-
       // 🔥 MAIN SCROLL ANIMATION (LIKE YOUR VIDEO)
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
           end: "+=600", // control animation length
-          scrub: true,
+          scrub: 1, // 🔥 smooth damping to eliminate wheel jitter and glitch
           pin: true, // 🔥 makes section stick
-          anticipatePin: 1,
-        }
+          pinSpacing: true,
+          invalidateOnRefresh: true,
+        },
       });
 
       // 🔥 PANEL OPEN EFFECT
@@ -58,9 +59,10 @@ const CTASection = () => {
       );
 
       // 🔥 BUTTON HOVER (SUBTLE SCALE)
-      if (buttonRef.current) {
+      const btn = buttonRef.current;
+      if (btn) {
         const enter = () => {
-          gsap.to(buttonRef.current, {
+          gsap.to(btn, {
             scale: 1.05,
             duration: 0.2,
             ease: "power2.out",
@@ -68,35 +70,41 @@ const CTASection = () => {
         };
 
         const leave = () => {
-          gsap.to(buttonRef.current, {
+          gsap.to(btn, {
             scale: 1,
             duration: 0.2,
             ease: "power2.out",
           });
         };
 
-        buttonRef.current.addEventListener("mouseenter", enter);
-        buttonRef.current.addEventListener("mouseleave", leave);
+        btn.addEventListener("mouseenter", enter);
+        btn.addEventListener("mouseleave", leave);
 
         return () => {
-          buttonRef.current?.removeEventListener("mouseenter", enter);
-          buttonRef.current?.removeEventListener("mouseleave", leave);
+          btn.removeEventListener("mouseenter", enter);
+          btn.removeEventListener("mouseleave", leave);
         };
       }
-
     }, sectionRef);
 
-    return () => ctx.revert();
+    // Refresh ScrollTrigger to calculate accurate coordinates
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 overflow-hidden">
-      <div className="container mx-auto px-4">
-
+    <section ref={sectionRef} className="overflow-hidden py-10 md:py-16">
+      <Container>
         {/* 🔥 OPENING PANEL */}
         <div
           ref={wrapperRef}
-          className="bg-black rounded-4xl shadow-2xl will-change-transform overflow-hidden"
+          className="bg-black rounded-[2rem] shadow-2xl will-change-transform overflow-hidden"
           style={{ transformOrigin: "center center" }}
         >
           <div
@@ -104,7 +112,6 @@ const CTASection = () => {
             className="mx-auto text-center p-8 md:p-12 lg:p-16"
           >
             <div className="flex flex-col items-center gap-8">
-
               {/* TEXT */}
               <div className="space-y-4">
                 <h6 className="text-white/90 text-lg md:text-xl font-semibold tracking-wide">
@@ -119,10 +126,9 @@ const CTASection = () => {
               <a
                 ref={buttonRef}
                 href="/contact"
-                className="inline-block group mt-6 md:mt-10"
+                className="inline-block group mt-6"
               >
                 <div className="flex items-center space-x-4 bg-white text-gray-900 px-6 md:px-8 py-3 md:py-4 rounded-full shadow-xl transition-all duration-300">
-
                   <span className="relative overflow-hidden h-6">
                     <span className="block transition-transform duration-300 group-hover:-translate-y-full">
                       Get in Touch
@@ -152,15 +158,12 @@ const CTASection = () => {
                       </svg>
                     </div>
                   </div>
-
                 </div>
               </a>
-
             </div>
           </div>
         </div>
-
-      </div>
+      </Container>
     </section>
   );
 };

@@ -19,7 +19,7 @@ const ServicePage = () => {
       <div className="pt-20 md:pt-24" id="careers">
         <Career />
       </div>
-      <div className="">
+      <div className="section">
         <CTASection />
       </div>
     </div>

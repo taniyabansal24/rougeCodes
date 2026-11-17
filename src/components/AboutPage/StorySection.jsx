@@ -2,246 +2,233 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Container from "../ui/Container";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const PILLARS = [
+  {
+    icon: "compass",
+    title: "Understand",
+    text: "Every engagement starts with the problem, the people and the business behind it.",
+  },
+  {
+    icon: "pen",
+    title: "Shape",
+    text: "We design the product and its architecture together, so ambition and feasibility stay aligned.",
+  },
+  {
+    icon: "layers",
+    title: "Engineer",
+    text: "We build across firmware, cloud, web and mobile — production-ready, not just demo-ready.",
+  },
+];
+
+const renderIcon = (name) => {
+  switch (name) {
+    case "compass":
+      return (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" />
+        </svg>
+      );
+    case "pen":
+      return (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M14.5 5.5 18.5 9.5" />
+          <path d="M4 20l1-4.5L15.5 5a2.1 2.1 0 0 1 3 0l.5.5a2.1 2.1 0 0 1 0 3L8.5 19 4 20Z" />
+        </svg>
+      );
+    case "layers":
+      return (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="m12 3 9 5-9 5-9-5 9-5Z" />
+          <path d="m3 13 9 5 9-5" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
+
 const StorySection = () => {
   const sectionRef = useRef(null);
-  const contentRef = useRef(null);
-  const imageRef = useRef(null);
-  const featureRefs = useRef([]);
-  const buttonRef = useRef(null);
-  const buttonTextRef = useRef(null);
-  const buttonTextAbsoluteRef = useRef(null);
+  const leftColRef = useRef(null);
+  const rightColRef = useRef(null);
+  const pillarsRef = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Main content animation
-      if (contentRef.current) {
+      // Animate left column (eyebrow & heading)
+      if (leftColRef.current) {
         gsap.fromTo(
-          contentRef.current,
+          leftColRef.current,
           { opacity: 0, y: 30 },
           {
             opacity: 1,
             y: 0,
-            duration: 1,
+            duration: 0.8,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top 80%",
-              end: "top 50%",
-              scrub: 1,
+              toggleActions: "play none none reverse",
             },
-          },
+          }
         );
       }
 
-      // Image parallax
-      if (imageRef.current) {
-        gsap.to(imageRef.current, {
-          y: -50,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.5,
-          },
-        });
+      // Animate right column paragraphs
+      if (rightColRef.current) {
+        gsap.fromTo(
+          rightColRef.current.children,
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
       }
 
-      // Feature cards animation
-      featureRefs.current.forEach((ref, index) => {
-        if (ref) {
-          gsap.fromTo(
-            ref,
-            { opacity: 0, y: 30 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              delay: index * 0.1,
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top 70%",
-                end: "bottom 60%",
-                toggleActions: "play none none reverse",
-              },
+      // Animate pillars grid
+      if (pillarsRef.current.length > 0) {
+        gsap.fromTo(
+          pillarsRef.current,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: pillarsRef.current[0],
+              start: "top 85%",
+              toggleActions: "play none none reverse",
             },
-          );
-        }
-      });
-
-      // Button text hover animation
-      if (
-        buttonTextRef.current &&
-        buttonTextAbsoluteRef.current &&
-        buttonRef.current
-      ) {
-        const handleMouseEnter = () => {
-          gsap.to(buttonTextRef.current, {
-            y: "-100%",
-            duration: 0.3,
-            ease: "power2.inOut",
-          });
-          gsap.to(buttonTextAbsoluteRef.current, {
-            y: "0%",
-            duration: 0.3,
-            ease: "power2.inOut",
-          });
-        };
-
-        const handleMouseLeave = () => {
-          gsap.to(buttonTextRef.current, {
-            y: "0%",
-            duration: 0.3,
-            ease: "power2.inOut",
-          });
-          gsap.to(buttonTextAbsoluteRef.current, {
-            y: "250%",
-            duration: 0.3,
-            ease: "power2.inOut",
-          });
-        };
-
-        buttonRef.current.addEventListener("mouseenter", handleMouseEnter);
-        buttonRef.current.addEventListener("mouseleave", handleMouseLeave);
-
-        return () => {
-          if (buttonRef.current) {
-            buttonRef.current.removeEventListener(
-              "mouseenter",
-              handleMouseEnter,
-            );
-            buttonRef.current.removeEventListener(
-              "mouseleave",
-              handleMouseLeave,
-            );
           }
-        };
+        );
       }
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  const features = [
-    {
-      title: "Innovate to Lead",
-      description:
-        "Foster creativity and embrace innovation to stay ahead of the competition.",
-    },
-    {
-      title: "Optimize for Growth",
-      description:
-        "Streamline processes and resources to maximize efficiency and profitability.",
-    },
-    {
-      title: "Engage with Purpose",
-      description: "Build meaningful relationships with customers through",
-    },
-    {
-      title: "Scale with Strategy",
-      description:
-        "Expand your business by implementing structured, scalable plans",
-    },
-  ];
-
   return (
     <section
       ref={sectionRef}
-      className="overflow-hidden"
+      className="w-full overflow-hidden bg-surface"
+      aria-labelledby="story-title"
     >
-      <div className="container mx-auto px-4">
-        <div
-          ref={contentRef}
-          className="flex flex-col lg:flex-row gap-12 items-center"
-          style={{
-            opacity: 1,
-            transform:
-              "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
-            transformStyle: "preserve-3d",
-          }}
-        >
-          {/* Image Column */}
-          <div className="lg:w-1/2 relative">
-            <div className="relative rounded-2xl pt-2">
-              <img
-                ref={imageRef}
-                src="https://cdn.prod.website-files.com/6877e02f5387b6bdd6d338ec/68aa0d4927a7a2c37c2d4733_Why%20Chooses%20Us%20Image.png"
-                loading="lazy"
-                alt="Choose Image"
-                className="w-full h-auto object-cover"
-              />
+      <Container size="xl">
+        {/* Story — editorial split */}
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 items-start pt-28">
+          {/* Left Column */}
+          <div ref={leftColRef} className="lg:col-span-5">
+            <div className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-mono uppercase tracking-wider text-[#5b636b]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3f9526] shadow-[0_0_0_3px_rgba(63,149,38,0.18)]" />
+              <span>Our story</span>
             </div>
+            <h2
+              id="story-title"
+              className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight font-['Phudu',sans-serif] text-[#15191c] leading-[1.1]"
+            >
+              Industrial-grade engineering, with a product mindset.
+            </h2>
           </div>
 
-          {/* Text Column */}
-          <div className="lg:w-1/2">
-            {/* Header */}
-            <div className="mb-8">
-              <span className="badge mb-3 inline-block">About Us</span>
-              <h2 className="section-heading mb-4">
-                Your Success, Our Priority.
-              </h2>
-              <p className="text-body">
-                We're dedicated to helping you achieve your goals with a simple,
-                user-friendly experience. We believe our commitment to your
-                success sets us apart.
-              </p>
-            </div>
-
-            {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  ref={(el) => (featureRefs.current[index] = el)}
-                  className="pt-4 border-t border-[#4948524d] transition-all duration-300"
-                  style={{
-                    opacity: 1,
-                    transform:
-                      "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <h3 className="subheading font-semibold text-high mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-body text-mid">{feature.description}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Button */}
-            <div className="">
-              <button
-                className="group relative px-8 py-4 rounded-lg btn-text transition-all duration-500 overflow-hidden hover:shadow-2xl hover:-translate-y-1 bg-accent text-white"
-                style={{
-                  boxShadow: "0 10px 25px -5px rgba(139, 168, 136, 0.4)",
-                }}
-              >
-                <span className="absolute inset-0 w-full h-full transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                <span className="relative flex items-center justify-center gap-2">
-                  Start Project
-                  <svg
-                    className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </div>
+          {/* Right Column */}
+          <div
+            ref={rightColRef}
+            className="space-y-6 text-[1.075rem] leading-[1.7] text-[#4a5157] lg:col-span-6 lg:col-start-7"
+          >
+            <p>
+              RougeCodes exists to bridge the gap between abstract ideas and
+              production-ready reality. Too many good ideas stall between a
+              pitch deck and a working product — lost in handovers between
+              designers, software engineers and hardware specialists.
+            </p>
+            <p>
+              We bring those disciplines together. Web and mobile applications,
+              IoT products and embedded systems are planned and built by one team,
+              so the experience on the screen and the engineering underneath are
+              designed as a single system.
+            </p>
+            <p className="font-medium text-[#15191c]">
+              Your success is our priority: we’re dedicated to helping you reach
+              your goals with a simple, collaborative experience from first
+              conversation to launch — and beyond.
+            </p>
           </div>
         </div>
-      </div>
+
+        {/* Pillars Grid */}
+        <div className="mt-16 lg:mt-24">
+          <ul className="grid gap-px overflow-hidden rounded-2xl border border-black/10 bg-black/10 md:grid-cols-3">
+            {PILLARS.map((p, i) => (
+              <li
+                key={p.title}
+                ref={(el) => (pillarsRef.current[i] = el)}
+                className="bg-white p-8 transition-colors duration-200 hover:bg-[#fafaf7]"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-[#f0f6ec] text-[#2c6e1a]">
+                    {renderIcon(p.icon)}
+                  </span>
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#8a9299]">
+                    0{i + 1}
+                  </span>
+                </div>
+                <h3 className="mt-8 text-xl sm:text-2xl font-semibold tracking-tight text-[#15191c]">
+                  {p.title}
+                </h3>
+                <p className="mt-3 text-[0.975rem] leading-relaxed text-[#5b636b]">
+                  {p.text}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Container>
     </section>
   );
 };

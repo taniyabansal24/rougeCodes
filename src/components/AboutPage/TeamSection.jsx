@@ -1,185 +1,173 @@
 // components/AboutPage/TeamSection.jsx
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import techLeadImage from "../../assets/taniya.png";
-// import designerImage from "../../assets/satya.jpg";
-import ceoImage from "../../assets/bikesh.png";
-import sarthakImage from "../../assets/sarthak.png";
-// import sarthakImage from "../../assets/sarthak1.jpg";
+import Container from "../ui/Container";
+import bikeshImg from "../../assets/team-bikesh.webp";
+import sarthakImg from "../../assets/team-sarthak.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TeamSection = () => {
+const TEAM = [
+  {
+    name: "Bikesh Kumar",
+    role: "CEO & CTO",
+    image: bikeshImg,
+    bio: "Leads RougeCodes’ vision and technology — guiding how products are planned, engineered and delivered.",
+  },
+  {
+    name: "Sarthak Arora",
+    role: "Technical Director & Co-founder",
+    image: sarthakImg,
+    imageAlign: "left",
+    bio: "Specialises in scalable architectures and emerging technologies, ensuring our solutions are future-ready.",
+  },
+];
+
+export function TeamCard({ member, cardRef }) {
+  return (
+    <li ref={cardRef} className="group list-none">
+      <figure>
+        <div className="relative aspect-[4/4.4] overflow-hidden rounded-2xl border border-black/10 bg-[#e8eee6]">
+          {/* Subtle grid pattern */}
+          <div
+            className="pointer-events-none absolute inset-0 opacity-60 [mask-image:linear-gradient(to_top,transparent,#000)]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(21, 25, 28, 0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(21, 25, 28, 0.08) 1px, transparent 1px)",
+              backgroundSize: "48px 48px",
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Arch spotlight */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-[10%] bottom-0 h-3/4 rounded-t-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.75),transparent)]"
+          />
+
+          {/* Portrait Image */}
+          <img
+            src={member.image}
+            alt={`Portrait of ${member.name}`}
+            width="800"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            className={`absolute bottom-0 w-auto max-w-none object-contain object-bottom ${
+              member.imageAlign === "left"
+                ? "left-0 h-[96%]"
+                : "left-1/2 h-[92%] -translate-x-1/2"
+            } transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]`}
+            style={{ transformOrigin: "50% 100%" }}
+          />
+        </div>
+
+        <figcaption className="mt-5">
+          <p className="text-[1.25rem] font-semibold tracking-[-0.02em] text-[#15191c]">
+            {member.name}
+          </p>
+          <p className="font-mono text-xs uppercase tracking-wider font-medium text-[#2c6e1a] mt-2">
+            {member.role}
+          </p>
+          <p className="mt-3 max-w-sm text-[0.95rem] leading-relaxed text-[#5b636b]">
+            {member.bio}
+          </p>
+        </figcaption>
+      </figure>
+    </li>
+  );
+}
+
+export default function TeamSection({
+  eyebrow = "The team",
+  title = "The people behind the work.",
+  lead = "RougeCodes is led by its founders, who stay close to the engineering and the people we build for.",
+}) {
   const sectionRef = useRef(null);
-  const [activeMember, setActiveMember] = useState(null);
-  const membersRef = useRef([]);
+  const headerRef = useRef(null);
+  const cardsRef = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      membersRef.current.forEach((member, index) => {
+      // Left Column Entrance
+      if (headerRef.current) {
         gsap.fromTo(
-          member,
-          { opacity: 0, y: 50 },
+          headerRef.current,
+          { opacity: 0, y: 30 },
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            delay: index * 0.1,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 70%",
-              end: "center center",
+              start: "top 80%",
               toggleActions: "play none none reverse",
             },
-          },
+          }
         );
+      }
 
-        member.addEventListener("mouseenter", () => {
-          gsap.to(member, {
-            y: -10,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        });
-
-        member.addEventListener("mouseleave", () => {
-          gsap.to(member, {
+      // Team Cards Staggered Entrance
+      if (cardsRef.current.length > 0) {
+        gsap.fromTo(
+          cardsRef.current,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
             y: 0,
-            duration: 0.3,
+            duration: 0.8,
+            stagger: 0.15,
             ease: "power2.out",
-          });
-        });
-      });
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  const team = [
-    {
-      name: "Bikesh Kumar",
-      role: "CEO & CTO",
-      image:
-        ceoImage,
-      bio: "Bikesh has over years of experience leading creative teams and crafting brand identities for global companies.",
-    },
-    {
-      name: "Sarthak Arora",
-      role: "Technical Director & Co-founder",
-      image:
-        sarthakImage,
-      bio: "Sarthak specializes in scalable architectures and emerging technologies, ensuring our solutions are future-ready.",
-    },
-    // {
-    //   name: "Taniya Bansal",
-    //   role: "Technical Lead",
-    //   image: techLeadImage,
-    //   bio: "Taniya is a leader, hustler, and coder focused on building scalable, efficient, and future-ready tech solutions.",
-    // },
-    // {
-    //   name: "Satya Prakash",
-    //   role: "Strategy Lead",
-    //   image: designerImage,
-    //   bio: "Satya blends business insight and creativity to craft smart strategies that deliver consistent and impactful results.",
-    // },
-    // {
-    //   name: "Aayush Mehta",
-    //   role: "Strategy Lead",
-    //   image:
-    //     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400",
-    //   bio: "Aayush combines business acumen with creative thinking to develop strategies that drive real results.",
-    // },
-  ];
-
   return (
-    <section ref={sectionRef} className="relative">
-      <div className="container mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="badge mb-3 inline-block">Our Team</span>
-          <h2 className="section-heading text-high mb-4">
-            The people behind <br /> the work
-          </h2>
-          <p className="subheading text-mid">
-            A diverse group of creative minds passionate about what they do.
-          </p>
-        </div>
+    <section ref={sectionRef} className="w-full overflow-hidden" aria-labelledby="team-title">
+      <Container size="xl">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 items-start">
+          {/* Header Column */}
+          <div ref={headerRef} className="lg:col-span-5">
+            <div className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-mono uppercase tracking-wider text-[#5b636b]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3f9526] shadow-[0_0_0_3px_rgba(63,149,38,0.18)]" />
+              <span>{eyebrow}</span>
+            </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {team.map((member, index) => (
-            <div
-              key={index}
-              ref={(el) => (membersRef.current[index] = el)}
-              className="group cursor-pointer opacity-0 text-center"
-              onMouseEnter={() => setActiveMember(index)}
-              onMouseLeave={() => setActiveMember(null)}
+            <h2
+              id="team-title"
+              className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight font-['Phudu',sans-serif] text-[#15191c] leading-[1.1]"
             >
-              {/* Passport size photo style */}
-              <div className="relative mb-3 overflow-hidden rounded-full w-52 h-52 mx-auto border-2 border-gray-200 shadow-md">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+              {title}
+            </h2>
 
-                {/* Bio overlay on hover - updated with text-body */}
-                <div
-                  className={`absolute bottom-0 left-0 right-0 p-4 text-white text-center transform transition-transform duration-500 ${
-                    activeMember === index
-                      ? "translate-y-0"
-                      : "translate-y-full"
-                  }`}
-                >
-                  <p className="text-sm">{member.bio}</p>
-                </div>
-              </div>
+            <p className="mt-5 text-base sm:text-lg text-[#5b636b] leading-relaxed max-w-md">
+              {lead}
+            </p>
+          </div>
 
-              <h3 className="card-title text-high mb-1">{member.name}</h3>
-              <p className="text-body text-accent">{member.role}</p>
-            </div>
-          ))}
+          {/* Cards Grid */}
+          <ul className="grid gap-8 sm:grid-cols-2 lg:col-span-7 lg:gap-6 p-0 m-0">
+            {TEAM.map((m, i) => (
+              <TeamCard
+                key={m.name}
+                member={m}
+                cardRef={(el) => (cardsRef.current[i] = el)}
+              />
+            ))}
+          </ul>
         </div>
-
-        {/* Join the team CTA */}
-        <div className="text-center mt-12">
-          {/* Button */}
-          <a href="/contact" className="inline-block group">
-            <div className="flex items-center space-x-4 bg-accent text-white px-8 py-4 rounded-full hover:bg-black transition-colors duration-300 shadow-xl">
-              <span className="btn-text relative overflow-hidden h-6">
-                <span className="block transition-transform duration-300 group-hover:-translate-y-full">
-                  Join Our Team
-                </span>
-                <span className="block absolute top-full left-0 transition-transform duration-300 group-hover:top-0">
-                  Join Our Team
-                </span>
-              </span>
-              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center overflow-hidden">
-                <div className="relative w-5 h-5">
-                  <svg
-                    className="absolute top-0 left-0 transition-transform duration-300 group-hover:-translate-x-7"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="black"
-                  >
-                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-                  </svg>
-                  <svg
-                    className="absolute top-0 left-full transition-transform duration-300 group-hover:left-0"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="black"
-                  >
-                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
+      </Container>
     </section>
   );
-};
-
-export default TeamSection;
+}

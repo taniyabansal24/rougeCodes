@@ -14,7 +14,7 @@ const AboutUsPage = () => {
   return (
     <div>
       <HeroSection />
-      <div className="section">
+      <div className="">
         <StorySection />
       </div>
       <div className="section-sm">
@@ -27,11 +27,11 @@ const AboutUsPage = () => {
         <TeamSection />
       </div>
       <div className=" section ">
-        <FAQ/>
+        <FAQ />
       </div>
-      <div className="">
+      <div className="relative mb-24">
         {/* <CallToAction /> */}
-        <CTASection/>
+        <CTASection />
       </div>
     </div>
   );
